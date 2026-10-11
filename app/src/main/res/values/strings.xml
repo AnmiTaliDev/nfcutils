@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-License-Identifier: GPL-3.0-only
+SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
+-->
+<resources>
+    <string name="app_name" translatable="false">NFC Utils</string>
+
+    <string name="tab_scan">Scan</string>
+    <string name="tab_write">Write</string>
+    <string name="tab_tools">Tools</string>
+    <string name="tab_history">History</string>
+    <string name="tab_saved">Saved</string>
+
+    <string name="screen_settings">Settings</string>
+    <string name="screen_about">About</string>
+    <string name="screen_notices">Notices</string>
+    <string name="screen_history_detail">Scan details</string>
+    <string name="screen_set_editor">Saved set</string>
+
+    <string name="action_back">Back</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_close">Close</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_save">Save</string>
+    <string name="action_save_as_set">Save as set</string>
+    <string name="action_try_again">Try again</string>
+    <string name="action_write">Write</string>
+    <string name="action_write_to_tag">Write to tag</string>
+    <string name="action_move_up">Up</string>
+    <string name="action_move_down">Down</string>
+    <string name="action_remove_record">Remove record</string>
+
+    <string name="nfc_unavailable_title">NFC is not available</string>
+    <string name="nfc_unavailable_body">This device has no NFC hardware. Tags cannot be read or written.</string>
+    <string name="nfc_disabled_title">NFC is turned off</string>
+    <string name="nfc_disabled_body">Turn on NFC to read and write tags.</string>
+    <string name="nfc_open_settings">Open NFC settings</string>
+
+    <string name="scan_hint_title">Ready to scan</string>
+    <string name="scan_hint_body">Hold a tag against the back of the device.</string>
+    <string name="scan_failed_title">Scan failed</string>
+
+    <string name="section_records">NDEF records</string>
+    <string name="section_pages">Page dump</string>
+    <string name="records_none">The tag has no NDEF records.</string>
+    <string name="record_payload_hex">Payload (hex)</string>
+    <string name="record_payload_empty">Empty</string>
+    <string name="unsupported_title">Unsupported tag</string>
+    <string name="unsupported_body">This is a MIFARE Classic tag without NDEF data. MIFARE Classic is not supported.</string>
+
+    <string name="info_tag_type">Tag type</string>
+    <string name="info_uid">UID</string>
+    <string name="info_technologies">Technologies</string>
+    <string name="info_atqa">ATQA</string>
+    <string name="info_sak">SAK</string>
+    <string name="info_memory_size">Memory size</string>
+    <string name="info_used_size">Used size</string>
+    <string name="info_writable">Writable</string>
+    <string name="info_can_make_read_only">Can be made read-only</string>
+    <string name="info_ndef_formatable">NDEF formatable</string>
+    <string name="info_scanned_at">Scanned</string>
+    <string name="value_yes">Yes</string>
+    <string name="value_no">No</string>
+    <string name="value_not_available">Not available</string>
+    <string name="value_bytes">%1$d B</string>
+
+    <string name="tag_type_nfc_forum_type_1">NFC Forum Type 1</string>
+    <string name="tag_type_nfc_forum_type_2">NFC Forum Type 2</string>
+    <string name="tag_type_nfc_forum_type_3">NFC Forum Type 3</string>
+    <string name="tag_type_nfc_forum_type_4">NFC Forum Type 4</string>
+    <string name="tag_type_mifare_classic">MIFARE Classic</string>
+    <string name="tag_type_mifare_ultralight">MIFARE Ultralight</string>
+    <string name="tag_type_mifare_ultralight_c">MIFARE Ultralight C</string>
+    <string name="tag_type_ntag213">NTAG213 (by memory size)</string>
+    <string name="tag_type_ntag215">NTAG215 (by memory size)</string>
+    <string name="tag_type_ntag216">NTAG216 (by memory size)</string>
+    <string name="tag_type_iso15693">ISO 15693</string>
+    <string name="tag_type_felica">FeliCa (NFC-F)</string>
+    <string name="tag_type_iso14443_4">ISO 14443-4</string>
+    <string name="tag_type_iso14443_b">ISO 14443-3B</string>
+    <string name="tag_type_iso14443_a">ISO 14443-3A</string>
+    <string name="tag_type_barcode">NFC barcode</string>
+    <string name="tag_type_unknown">Unknown</string>
+
+    <string name="record_kind_empty">Empty</string>
+    <string name="record_kind_text">Text</string>
+    <string name="record_kind_uri">URI</string>
+    <string name="record_kind_mime">MIME</string>
+    <string name="record_kind_wifi">Wi-Fi network</string>
+    <string name="record_kind_smart_poster">Smart Poster</string>
+    <string name="record_kind_external">External type</string>
+    <string name="record_kind_unknown">Unknown</string>
+
+    <string name="draft_kind_text">Text</string>
+    <string name="draft_kind_url">URL</string>
+    <string name="draft_kind_phone">Phone number</string>
+    <string name="draft_kind_email">Email</string>
+    <string name="draft_kind_geo">Location</string>
+    <string name="draft_kind_wifi">Wi-Fi network</string>
+    <string name="draft_kind_contact">Contact</string>
+    <string name="draft_kind_mime">MIME</string>
+
+    <string name="editor_add_record">Add record</string>
+    <string name="editor_record_title">%1$d. %2$s</string>
+    <string name="editor_message_size">Message size: %1$d B</string>
+    <string name="editor_message_size_unknown">Message size is shown when all records are valid.</string>
+    <string name="editor_no_records_error">Add at least one record.</string>
+
+    <string name="field_text">Text</string>
+    <string name="field_language">Language code</string>
+    <string name="field_encoding">Encoding</string>
+    <string name="choice_utf8">UTF-8</string>
+    <string name="choice_utf16">UTF-16</string>
+    <string name="field_url">URL (with scheme, for example https://)</string>
+    <string name="field_phone">Phone number</string>
+    <string name="field_email_address">Email address</string>
+    <string name="field_email_subject">Subject</string>
+    <string name="field_email_body">Message</string>
+    <string name="field_latitude">Latitude</string>
+    <string name="field_longitude">Longitude</string>
+    <string name="field_wifi_ssid">Network name (SSID)</string>
+    <string name="field_wifi_password">Password</string>
+    <string name="field_wifi_security">Security</string>
+    <string name="choice_wifi_open">Open</string>
+    <string name="choice_wifi_wpa2">WPA2-Personal</string>
+    <string name="choice_wifi_wpa_wpa2">WPA/WPA2-Personal</string>
+    <string name="field_first_name">First name</string>
+    <string name="field_last_name">Last name</string>
+    <string name="field_organization">Organization</string>
+    <string name="field_website">Website</string>
+    <string name="field_mime_type">MIME type</string>
+    <string name="field_mime_data">Data (text)</string>
+    <string name="field_set_name">Set name</string>
+
+    <string name="field_error_empty">This field is required.</string>
+    <string name="field_error_too_short">The value is too short.</string>
+    <string name="field_error_too_long">The value is too long.</string>
+    <string name="field_error_invalid_format">The value has an invalid format.</string>
+    <string name="field_error_out_of_range">The value is out of range.</string>
+
+    <string name="save_set_title">Save as set</string>
+    <string name="message_set_saved">Set saved.</string>
+
+    <string name="operation_hold_tag">Hold the tag against the back of the device and keep it there.</string>
+    <string name="operation_write_title">Write to tag</string>
+    <string name="operation_write_success">The message was written to the tag.</string>
+    <string name="operation_erase_title">Erase tag</string>
+    <string name="operation_erase_success">The NDEF content was erased.</string>
+    <string name="operation_format_title">Format tag</string>
+    <string name="operation_format_success">The tag was formatted as NDEF.</string>
+    <string name="operation_lock_title">Make read-only</string>
+    <string name="operation_lock_success">The tag is now read-only.</string>
+    <string name="operation_failed_title">Operation failed</string>
+
+    <string name="failure_tag_lost">The tag was moved away too early. Hold it still and try again.</string>
+    <string name="failure_not_writable">The tag is not writable. It may be read-only or locked.</string>
+    <string name="failure_too_large">The message needs %1$d B, but the tag holds %2$d B.</string>
+    <string name="failure_unsupported_tag">This tag does not support NDEF.</string>
+    <string name="failure_not_formatted">The tag is not NDEF-formatted, so there is nothing to erase.</string>
+    <string name="failure_already_formatted">The tag is already NDEF-formatted.</string>
+    <string name="failure_cannot_lock">This tag cannot be made read-only.</string>
+    <string name="failure_invalid_message">The tag rejected the NDEF message.</string>
+    <string name="failure_io_error">Communication with the tag failed. The message may be too large for the tag, or the tag type is not supported.</string>
+
+    <string name="tool_erase_title">Erase</string>
+    <string name="tool_erase_body">Writes an empty NDEF message to the tag.</string>
+    <string name="tool_erase_action">Erase tag</string>
+    <string name="tool_format_title">Format</string>
+    <string name="tool_format_body">Formats a blank tag as NDEF. Tags that are already formatted are left unchanged.</string>
+    <string name="tool_format_action">Format tag</string>
+    <string name="tool_lock_title">Make read-only</string>
+    <string name="tool_lock_body">Permanently locks the tag against writing. This cannot be undone.</string>
+    <string name="tool_lock_action">Make read-only</string>
+    <string name="lock_confirm_title">Make the tag read-only?</string>
+    <string name="lock_confirm_body">This is irreversible. After locking, the tag can never be written, erased or formatted again, by this app or any other.</string>
+    <string name="lock_confirm_action">Make read-only</string>
+
+    <string name="history_empty">No scans yet. Scanned tags are saved here automatically.</string>
+    <string name="history_no_records">No records</string>
+    <string name="history_clear">Clear history</string>
+    <string name="history_clear_title">Clear history?</string>
+    <string name="history_clear_body">All saved scans will be deleted.</string>
+    <string name="history_clear_confirm">Clear</string>
+    <string name="history_delete_entry">Delete this entry</string>
+
+    <string name="saved_new">New set</string>
+    <string name="saved_empty">No saved sets yet.</string>
+    <string name="saved_delete_title">Delete set?</string>
+    <string name="saved_delete_body">The saved set will be deleted.</string>
+
+    <string name="settings_theme">Theme</string>
+    <string name="theme_system">Follow system</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="settings_dynamic_color">Dynamic color</string>
+    <string name="settings_dynamic_color_body">Use colors from the wallpaper. When off, a fixed color scheme is used.</string>
+    <string name="settings_about">About</string>
+    <string name="settings_notices">Notices</string>
+
+    <string name="about_version">Version %1$s</string>
+    <string name="about_license">License: %1$s</string>
+    <string name="about_license_name" translatable="false">GPL-3.0-only</string>
+    <string name="about_website">Project website</string>
+    <string name="about_website_url" translatable="false">https://nfcutils.anmitali.dev</string>
+
+    <string name="notices_intro">NFC Utils includes the following third-party components. All of them are distributed under the Apache License 2.0, the text of which follows.</string>
+    <string name="notices_components_title">Components</string>
+    <string name="notices_component_androidx" translatable="false">AndroidX: Compose, Material 3, Activity, Core, Lifecycle, Navigation, Room, DataStore</string>
+    <string name="notices_component_kotlin" translatable="false">Kotlin standard library</string>
+    <string name="notices_component_coroutines" translatable="false">kotlinx.coroutines</string>
+    <string name="notices_license_title">Apache License 2.0</string>
+</resources>
