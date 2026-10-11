@@ -42,6 +42,7 @@ Unit tests run on the JVM and do not need a device or a tag:
 ## Screenshots
 
 <img src="docs/screenshots/scan.png" alt="Scan screen with the bottom navigation bar" width="300">
+<img src="docs/screenshots/write.png" alt="Write screen with a text record and a URL record" width="300">
 
 ## Links
 
