@@ -39,6 +39,10 @@ Unit tests run on the JVM and do not need a device or a tag:
 ./gradlew testDebugUnitTest
 ```
 
+## Screenshots
+
+<img src="docs/screenshots/scan.png" alt="Scan screen with the bottom navigation bar" width="300">
+
 ## Links
 
 - Project website: https://nfcutils.anmitali.dev
