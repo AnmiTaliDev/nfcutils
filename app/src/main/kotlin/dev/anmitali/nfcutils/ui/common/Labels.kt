@@ -39,6 +39,7 @@ fun ParsedKind.labelRes(): Int = when (this) {
     ParsedKind.Mime -> R.string.record_kind_mime
     ParsedKind.Wifi -> R.string.record_kind_wifi
     ParsedKind.SmartPoster -> R.string.record_kind_smart_poster
+    ParsedKind.AndroidApp -> R.string.record_kind_android_app
     ParsedKind.External -> R.string.record_kind_external
     ParsedKind.Unknown -> R.string.record_kind_unknown
 }
@@ -48,10 +49,12 @@ fun DraftKind.labelRes(): Int = when (this) {
     DraftKind.Text -> R.string.draft_kind_text
     DraftKind.Url -> R.string.draft_kind_url
     DraftKind.Phone -> R.string.draft_kind_phone
+    DraftKind.Sms -> R.string.draft_kind_sms
     DraftKind.Email -> R.string.draft_kind_email
     DraftKind.Geo -> R.string.draft_kind_geo
     DraftKind.Wifi -> R.string.draft_kind_wifi
     DraftKind.Contact -> R.string.draft_kind_contact
+    DraftKind.App -> R.string.draft_kind_app
     DraftKind.Mime -> R.string.draft_kind_mime
 }
 

@@ -5,9 +5,13 @@ package dev.anmitali.nfcutils.ndef
 
 private val PhonePattern = Regex("^\\+?[0-9*#]+$")
 
+fun cleanPhoneNumber(number: String): String = number.filter { it !in " -().\t" }
+
+fun isValidPhoneNumber(cleaned: String): Boolean = PhonePattern.matches(cleaned)
+
 fun buildPhoneRecord(number: String): RecordBuild {
-    val cleaned = number.filter { it !in " -().\t" }
+    val cleaned = cleanPhoneNumber(number)
     if (cleaned.isEmpty()) return RecordBuild.Invalid(FieldKey.PHONE, FieldError.Empty)
-    if (!PhonePattern.matches(cleaned)) return RecordBuild.Invalid(FieldKey.PHONE, FieldError.InvalidFormat)
+    if (!isValidPhoneNumber(cleaned)) return RecordBuild.Invalid(FieldKey.PHONE, FieldError.InvalidFormat)
     return RecordBuild.Ok(uriRecord("tel:$cleaned"))
 }

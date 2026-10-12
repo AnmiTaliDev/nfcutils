@@ -41,3 +41,6 @@ fun wellKnownRecord(type: String, payload: ByteArray): NdefRecordData =
 
 fun mimeRecord(mimeType: String, payload: ByteArray): NdefRecordData =
     NdefRecordData(Tnf.MIME, mimeType.toByteArray(Charsets.US_ASCII), ByteArray(0), payload)
+
+fun externalRecord(type: String, payload: ByteArray): NdefRecordData =
+    NdefRecordData(Tnf.EXTERNAL, type.toByteArray(Charsets.US_ASCII), ByteArray(0), payload)

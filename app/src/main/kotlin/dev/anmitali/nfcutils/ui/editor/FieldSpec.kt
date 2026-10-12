@@ -45,6 +45,10 @@ fun fieldsFor(kind: DraftKind): List<FieldSpec> = when (kind) {
     )
     DraftKind.Url -> listOf(FieldSpec.Input(FieldKey.URL, R.string.field_url, KeyboardType.Uri))
     DraftKind.Phone -> listOf(FieldSpec.Input(FieldKey.PHONE, R.string.field_phone, KeyboardType.Phone))
+    DraftKind.Sms -> listOf(
+        FieldSpec.Input(FieldKey.SMS_NUMBER, R.string.field_phone, KeyboardType.Phone),
+        FieldSpec.Input(FieldKey.SMS_BODY, R.string.field_sms_body, multiline = true),
+    )
     DraftKind.Email -> listOf(
         FieldSpec.Input(FieldKey.EMAIL_ADDRESS, R.string.field_email_address, KeyboardType.Email),
         FieldSpec.Input(FieldKey.EMAIL_SUBJECT, R.string.field_email_subject),
@@ -74,7 +78,12 @@ fun fieldsFor(kind: DraftKind): List<FieldSpec> = when (kind) {
         FieldSpec.Input(FieldKey.CONTACT_EMAIL, R.string.field_email_address, KeyboardType.Email),
         FieldSpec.Input(FieldKey.ORGANIZATION, R.string.field_organization),
         FieldSpec.Input(FieldKey.WEBSITE, R.string.field_website, KeyboardType.Uri),
+        FieldSpec.Input(FieldKey.STREET, R.string.field_street),
+        FieldSpec.Input(FieldKey.CITY, R.string.field_city),
+        FieldSpec.Input(FieldKey.POSTAL_CODE, R.string.field_postal_code),
+        FieldSpec.Input(FieldKey.COUNTRY, R.string.field_country),
     )
+    DraftKind.App -> listOf(FieldSpec.Input(FieldKey.APP_PACKAGE, R.string.field_app_package))
     DraftKind.Mime -> listOf(
         FieldSpec.Input(FieldKey.MIME_TYPE, R.string.field_mime_type),
         FieldSpec.Input(FieldKey.MIME_DATA, R.string.field_mime_data, multiline = true),

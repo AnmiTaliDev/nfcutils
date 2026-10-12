@@ -17,6 +17,10 @@ fun buildVCardRecord(
     email: String,
     organization: String,
     website: String,
+    street: String = "",
+    city: String = "",
+    postalCode: String = "",
+    country: String = "",
 ): RecordBuild {
     val first = firstName.trim()
     val last = lastName.trim()
@@ -29,6 +33,10 @@ fun buildVCardRecord(
         if (organization.isNotBlank()) add("ORG:${escapeVCard(organization.trim())}")
         if (phone.isNotBlank()) add("TEL:${escapeVCard(phone.trim())}")
         if (email.isNotBlank()) add("EMAIL:${escapeVCard(email.trim())}")
+        if (listOf(street, city, postalCode, country).any { it.isNotBlank() }) {
+            val parts = listOf(street, city, postalCode, country).map { escapeVCard(it.trim()) }
+            add("ADR:;;${parts[0]};${parts[1]};;${parts[2]};${parts[3]}")
+        }
         if (website.isNotBlank()) add("URL:${escapeVCard(website.trim())}")
         add("END:VCARD")
     }

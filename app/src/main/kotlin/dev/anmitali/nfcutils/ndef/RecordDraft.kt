@@ -3,7 +3,7 @@
 
 package dev.anmitali.nfcutils.ndef
 
-enum class DraftKind { Text, Url, Phone, Email, Geo, Wifi, Contact, Mime }
+enum class DraftKind { Text, Url, Phone, Sms, Email, Geo, Wifi, Contact, App, Mime }
 
 object FieldKey {
     const val TEXT = "text"
@@ -11,6 +11,8 @@ object FieldKey {
     const val ENCODING = "encoding"
     const val URL = "url"
     const val PHONE = "phone"
+    const val SMS_NUMBER = "sms_number"
+    const val SMS_BODY = "sms_body"
     const val EMAIL_ADDRESS = "email_address"
     const val EMAIL_SUBJECT = "email_subject"
     const val EMAIL_BODY = "email_body"
@@ -25,6 +27,11 @@ object FieldKey {
     const val CONTACT_EMAIL = "contact_email"
     const val ORGANIZATION = "organization"
     const val WEBSITE = "website"
+    const val STREET = "street"
+    const val CITY = "city"
+    const val POSTAL_CODE = "postal_code"
+    const val COUNTRY = "country"
+    const val APP_PACKAGE = "app_package"
     const val MIME_TYPE = "mime_type"
     const val MIME_DATA = "mime_data"
 }

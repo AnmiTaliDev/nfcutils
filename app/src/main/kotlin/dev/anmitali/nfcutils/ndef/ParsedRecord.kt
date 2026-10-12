@@ -3,7 +3,7 @@
 
 package dev.anmitali.nfcutils.ndef
 
-enum class ParsedKind { Empty, Text, Uri, Mime, Wifi, SmartPoster, External, Unknown }
+enum class ParsedKind { Empty, Text, Uri, Mime, Wifi, SmartPoster, AndroidApp, External, Unknown }
 
 sealed interface ParsedRecord {
     val kind: ParsedKind
@@ -30,6 +30,10 @@ sealed interface ParsedRecord {
 
     class SmartPoster(val title: String?, val uri: String?) : ParsedRecord {
         override val kind = ParsedKind.SmartPoster
+    }
+
+    class AndroidApp(val packageName: String) : ParsedRecord {
+        override val kind = ParsedKind.AndroidApp
     }
 
     class External(val type: String) : ParsedRecord {

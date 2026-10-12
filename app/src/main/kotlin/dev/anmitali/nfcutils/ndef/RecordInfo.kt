@@ -25,6 +25,7 @@ fun recordSummary(parsed: ParsedRecord): String = when (parsed) {
     is ParsedRecord.Mime -> parsed.mimeType
     is ParsedRecord.Wifi -> truncate(parsed.credential.ssid)
     is ParsedRecord.SmartPoster -> truncate(parsed.title ?: parsed.uri.orEmpty())
+    is ParsedRecord.AndroidApp -> parsed.packageName
     is ParsedRecord.External -> parsed.type
     is ParsedRecord.Unknown -> parsed.type
 }

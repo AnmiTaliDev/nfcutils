@@ -33,7 +33,11 @@ fun parseRecord(record: NdefRecordData): ParsedRecord {
         }
         Tnf.MIME -> parseMime(type, record.payload)
         Tnf.ABSOLUTE_URI -> ParsedRecord.Uri(String(record.type, Charsets.UTF_8))
-        Tnf.EXTERNAL -> ParsedRecord.External(type)
+        Tnf.EXTERNAL -> if (type == ANDROID_APP_TYPE && record.payload.isNotEmpty()) {
+            ParsedRecord.AndroidApp(String(record.payload, Charsets.UTF_8))
+        } else {
+            ParsedRecord.External(type)
+        }
         else -> null
     } ?: ParsedRecord.Unknown(record.tnf, record.type.toHex(""))
 }

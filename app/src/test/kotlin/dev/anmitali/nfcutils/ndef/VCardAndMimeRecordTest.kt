@@ -46,6 +46,27 @@ class VCardAndMimeRecordTest {
     }
 
     @Test
+    fun vCardWithAddress() {
+        val record = buildVCardRecord("Ann", "Lee", "", "", "", "", "Main St 1", "Berlin", "10115", "Germany").record()
+        assertEquals(
+            "BEGIN:VCARD\r\nVERSION:3.0\r\nN:Lee;Ann;;;\r\nFN:Ann Lee\r\nADR:;;Main St 1;Berlin;;10115;Germany\r\nEND:VCARD\r\n",
+            String(record.payload),
+        )
+    }
+
+    @Test
+    fun vCardAddressWithSingleComponent() {
+        val record = buildVCardRecord("Ann", "", "", "", "", "", city = "Paris").record()
+        assertEquals(true, String(record.payload).contains("ADR:;;;Paris;;;\r\n"))
+    }
+
+    @Test
+    fun vCardOmitsAddressWhenBlank() {
+        val record = buildVCardRecord("Ann", "", "", "", "", "", street = " ").record()
+        assertEquals(false, String(record.payload).contains("ADR"))
+    }
+
+    @Test
     fun vCardRequiresName() {
         assertInvalid(FieldKey.FIRST_NAME, FieldError.Empty, buildVCardRecord(" ", "", "+1", "", "", ""))
     }
