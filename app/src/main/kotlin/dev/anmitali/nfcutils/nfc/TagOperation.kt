@@ -46,7 +46,7 @@ sealed interface OperationStatus {
 }
 
 sealed interface ScanOutcome {
-    class Read(val details: TagDetails) : ScanOutcome
+    class Read(val details: TagDetails, val records: List<NdefRecordData>) : ScanOutcome
 
     class Failed(val failure: TagFailure) : ScanOutcome
 }

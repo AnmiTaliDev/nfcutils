@@ -94,6 +94,7 @@ fun AppScaffold(container: AppContainer) {
                 container = container,
                 navController = navController,
                 snackbarHostState = snackbarHostState,
+                onOpenEditor = { navigateToTab(navController, Tab.Write) },
                 modifier = Modifier.weight(1f),
             )
         }

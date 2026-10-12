@@ -17,10 +17,12 @@ import dev.anmitali.nfcutils.nfc.NfcSession
 import dev.anmitali.nfcutils.nfc.NfcStatus
 import dev.anmitali.nfcutils.nfc.OperationStatus
 import dev.anmitali.nfcutils.nfc.TagOperation
+import dev.anmitali.nfcutils.ui.editor.DraftHandoff
 import dev.anmitali.nfcutils.ui.editor.DraftItem
 import dev.anmitali.nfcutils.ui.editor.allValid
 import dev.anmitali.nfcutils.ui.editor.buildAll
 import dev.anmitali.nfcutils.ui.editor.records
+import dev.anmitali.nfcutils.ui.editor.toDraftItems
 import dev.anmitali.nfcutils.ui.editor.withField
 import dev.anmitali.nfcutils.ui.editor.withMovedDraft
 import dev.anmitali.nfcutils.ui.editor.withNewDraft
@@ -28,6 +30,7 @@ import dev.anmitali.nfcutils.ui.editor.withoutDraft
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -43,11 +46,21 @@ class WriteViewModel(
     private val session: NfcSession,
     private val savedSetDao: SavedSetDao,
     nfcStatus: NfcStatus,
+    handoff: DraftHandoff,
 ) : ViewModel() {
     private val mutableState = MutableStateFlow(WriteUiState())
     val state: StateFlow<WriteUiState> = mutableState.asStateFlow()
     val operationStatus: StateFlow<OperationStatus> = session.status
     val availability: StateFlow<NfcAvailability> = nfcStatus.state
+
+    init {
+        viewModelScope.launch {
+            handoff.pending.filterNotNull().collect { drafts ->
+                mutableState.update { it.copy(items = it.items + drafts.toDraftItems()) }
+                handoff.pending.value = null
+            }
+        }
+    }
 
     fun addRecord(kind: DraftKind) = mutableState.update { it.copy(items = it.items.withNewDraft(kind)) }
 
@@ -99,7 +112,7 @@ class WriteViewModel(
 
     companion object {
         fun factory(container: AppContainer) = viewModelFactory {
-            initializer { WriteViewModel(container.session, container.savedSetDao, container.nfcStatus) }
+            initializer { WriteViewModel(container.session, container.savedSetDao, container.nfcStatus, container.draftHandoff) }
         }
     }
 }

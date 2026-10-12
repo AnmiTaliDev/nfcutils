@@ -28,11 +28,12 @@ fun AppNavHost(
     container: AppContainer,
     navController: NavHostController,
     snackbarHostState: SnackbarHostState,
+    onOpenEditor: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val idArgument = listOf(navArgument(Routes.ARG_ID) { type = NavType.LongType })
     NavHost(navController = navController, startDestination = Routes.SCAN, modifier = modifier) {
-        composable(Routes.SCAN) { ScanScreen(container) }
+        composable(Routes.SCAN) { ScanScreen(container, onOpenEditor) }
         composable(Routes.WRITE) { WriteScreen(container, snackbarHostState) }
         composable(Routes.TOOLS) { ToolsScreen(container) }
         composable(Routes.HISTORY) {

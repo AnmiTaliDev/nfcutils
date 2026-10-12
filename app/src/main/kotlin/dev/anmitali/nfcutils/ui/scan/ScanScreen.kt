@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -23,12 +24,13 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import dev.anmitali.nfcutils.AppContainer
 import dev.anmitali.nfcutils.R
+import dev.anmitali.nfcutils.ndef.recordsToDrafts
 import dev.anmitali.nfcutils.nfc.ScanOutcome
 import dev.anmitali.nfcutils.ui.common.message
 import dev.anmitali.nfcutils.ui.taginfo.tagDetailsItems
 
 @Composable
-fun ScanScreen(container: AppContainer, modifier: Modifier = Modifier) {
+fun ScanScreen(container: AppContainer, onOpenEditor: () -> Unit, modifier: Modifier = Modifier) {
     val viewModel: ScanViewModel = viewModel(factory = ScanViewModel.factory(container))
     val outcome by viewModel.lastScan.collectAsStateWithLifecycle()
 
@@ -62,7 +64,22 @@ fun ScanScreen(container: AppContainer, modifier: Modifier = Modifier) {
                     }
                 }
             }
-            is ScanOutcome.Read -> tagDetailsItems(current.details)
+            is ScanOutcome.Read -> {
+                tagDetailsItems(current.details)
+                val drafts = recordsToDrafts(current.records)
+                if (drafts.isNotEmpty()) {
+                    item(key = "open-in-editor") {
+                        Button(
+                            onClick = {
+                                viewModel.openInEditor(drafts)
+                                onOpenEditor()
+                            },
+                        ) {
+                            Text(stringResource(R.string.scan_open_in_editor))
+                        }
+                    }
+                }
+            }
         }
     }
 }

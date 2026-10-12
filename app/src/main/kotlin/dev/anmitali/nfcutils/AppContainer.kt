@@ -12,6 +12,7 @@ import dev.anmitali.nfcutils.nfc.ReaderModeController
 import dev.anmitali.nfcutils.nfc.TagReader
 import dev.anmitali.nfcutils.nfc.TagWriter
 import dev.anmitali.nfcutils.settings.SettingsStore
+import dev.anmitali.nfcutils.ui.editor.DraftHandoff
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -26,4 +27,5 @@ class AppContainer(context: Context) {
     val nfcStatus = NfcStatus(context, NfcAdapter.getDefaultAdapter(context))
     val session = NfcSession(TagReader(), TagWriter(), historyDao, applicationScope)
     val readerMode = ReaderModeController(nfcStatus, session)
+    val draftHandoff = DraftHandoff()
 }

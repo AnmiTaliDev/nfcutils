@@ -65,7 +65,7 @@ class NfcSession(
         when (val result = reader.read(tag)) {
             is TagReader.Result.Success -> {
                 historyDao.insertScan(result.details)
-                mutableLastScan.value = ScanOutcome.Read(result.details)
+                mutableLastScan.value = ScanOutcome.Read(result.details, result.records)
             }
             is TagReader.Result.Failed -> mutableLastScan.value = ScanOutcome.Failed(result.failure)
         }

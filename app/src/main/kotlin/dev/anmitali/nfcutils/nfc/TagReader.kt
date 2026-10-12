@@ -31,7 +31,7 @@ private class NdefSnapshot(
 
 class TagReader {
     sealed interface Result {
-        class Success(val details: TagDetails) : Result
+        class Success(val details: TagDetails, val records: List<NdefRecordData>) : Result
 
         class Failed(val failure: TagFailure) : Result
     }
@@ -66,7 +66,7 @@ class TagReader {
                 records = records.map { describeRecord(it) },
                 pages = pages,
             )
-            return Result.Success(details)
+            return Result.Success(details, records)
         } catch (e: TagLostException) {
             return Result.Failed(TagFailure.TagLost)
         } catch (e: IOException) {
