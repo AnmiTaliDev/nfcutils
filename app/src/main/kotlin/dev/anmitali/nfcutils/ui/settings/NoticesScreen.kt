@@ -14,7 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
@@ -22,9 +22,9 @@ import dev.anmitali.nfcutils.R
 
 @Composable
 fun NoticesScreen(modifier: Modifier = Modifier) {
-    val context = LocalContext.current
-    val licenseText = remember {
-        context.resources.openRawResource(R.raw.license_apache_2_0).bufferedReader().use { it.readText() }
+    val resources = LocalResources.current
+    val licenseText = remember(resources) {
+        resources.openRawResource(R.raw.license_apache_2_0).bufferedReader().use { it.readText() }
     }
     Column(
         modifier = modifier.verticalScroll(rememberScrollState()).padding(16.dp),
