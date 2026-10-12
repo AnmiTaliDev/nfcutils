@@ -47,6 +47,10 @@ class SavedViewModel(
 
     fun closeOperation() = session.reset()
 
+    fun duplicate(item: SavedSetItem, name: String) {
+        viewModelScope.launch { savedSetDao.save(0, name, item.drafts, System.currentTimeMillis()) }
+    }
+
     fun delete(id: Long) {
         viewModelScope.launch { savedSetDao.delete(id) }
     }

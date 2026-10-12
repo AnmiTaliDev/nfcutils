@@ -5,8 +5,9 @@ package dev.anmitali.nfcutils.ui.saved
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -64,6 +65,7 @@ fun SavedScreen(container: AppContainer, onEdit: (Long) -> Unit, modifier: Modif
                 writeEnabled = availability == NfcAvailability.Enabled,
                 onWrite = { viewModel.write(item) },
                 onEdit = { onEdit(item.id) },
+                onDuplicate = { name -> viewModel.duplicate(item, name) },
                 onDelete = { deleteTarget = item.id },
             )
         }
@@ -92,14 +94,17 @@ fun SavedScreen(container: AppContainer, onEdit: (Long) -> Unit, modifier: Modif
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun SavedSetCard(
     item: SavedSetItem,
     writeEnabled: Boolean,
     onWrite: () -> Unit,
     onEdit: () -> Unit,
+    onDuplicate: (String) -> Unit,
     onDelete: () -> Unit,
 ) {
+    val copyName = stringResource(R.string.saved_copy_name, item.name)
     val kinds = item.drafts.map { stringResource(it.kind.labelRes()) }
     Card(
         modifier = Modifier.fillMaxWidth(),
@@ -112,9 +117,10 @@ private fun SavedSetCard(
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.padding(top = 12.dp)) {
+            FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.padding(top = 12.dp)) {
                 Button(onClick = onWrite, enabled = writeEnabled) { Text(stringResource(R.string.action_write)) }
                 OutlinedButton(onClick = onEdit) { Text(stringResource(R.string.action_edit)) }
+                OutlinedButton(onClick = { onDuplicate(copyName) }) { Text(stringResource(R.string.saved_duplicate)) }
                 TextButton(onClick = onDelete) { Text(stringResource(R.string.action_delete)) }
             }
         }
