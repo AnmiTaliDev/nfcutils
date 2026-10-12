@@ -3,6 +3,7 @@
 
 package dev.anmitali.nfcutils.ui.taginfo
 
+import android.content.Intent
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,10 +16,12 @@ import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
@@ -32,6 +35,7 @@ import java.util.Date
 
 fun LazyListScope.tagDetailsItems(details: TagDetails) {
     item(key = "tag") { TagInfoCard(details) }
+    item(key = "share") { ShareButton(details) }
     if (details.unsupported) {
         item(key = "unsupported") { UnsupportedCard() }
     } else {
@@ -50,6 +54,22 @@ fun LazyListScope.tagDetailsItems(details: TagDetails) {
     if (details.pages.isNotEmpty()) {
         item(key = "pages-title") { SectionTitle(R.string.section_pages) }
         item(key = "pages") { PagesCard(details.pages) }
+    }
+}
+
+@Composable
+private fun ShareButton(details: TagDetails) {
+    val context = LocalContext.current
+    val chooserTitle = stringResource(R.string.share_chooser_title)
+    OutlinedButton(
+        onClick = {
+            val send = Intent(Intent.ACTION_SEND)
+                .setType("text/plain")
+                .putExtra(Intent.EXTRA_TEXT, buildShareText(context, details))
+            context.startActivity(Intent.createChooser(send, chooserTitle))
+        },
+    ) {
+        Text(stringResource(R.string.action_share))
     }
 }
 
