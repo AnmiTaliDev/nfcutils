@@ -28,6 +28,8 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="action_try_again">Try again</string>
     <string name="action_write">Write</string>
     <string name="action_write_to_tag">Write to tag</string>
+    <string name="action_share">Share</string>
+    <string name="share_chooser_title">Share scan</string>
     <string name="action_move_up">Up</string>
     <string name="action_move_down">Down</string>
     <string name="action_remove_record">Remove record</string>
@@ -41,6 +43,7 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="scan_hint_title">Ready to scan</string>
     <string name="scan_hint_body">Hold a tag against the back of the device.</string>
     <string name="scan_failed_title">Scan failed</string>
+    <string name="scan_open_in_editor">Open in editor</string>
 
     <string name="section_records">NDEF records</string>
     <string name="section_pages">Page dump</string>
@@ -90,16 +93,19 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="record_kind_mime">MIME</string>
     <string name="record_kind_wifi">Wi-Fi network</string>
     <string name="record_kind_smart_poster">Smart Poster</string>
+    <string name="record_kind_android_app">Android app</string>
     <string name="record_kind_external">External type</string>
     <string name="record_kind_unknown">Unknown</string>
 
     <string name="draft_kind_text">Text</string>
     <string name="draft_kind_url">URL</string>
     <string name="draft_kind_phone">Phone number</string>
+    <string name="draft_kind_sms">SMS</string>
     <string name="draft_kind_email">Email</string>
     <string name="draft_kind_geo">Location</string>
     <string name="draft_kind_wifi">Wi-Fi network</string>
     <string name="draft_kind_contact">Contact</string>
+    <string name="draft_kind_app">App launch</string>
     <string name="draft_kind_mime">MIME</string>
 
     <string name="editor_add_record">Add record</string>
@@ -115,6 +121,8 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="choice_utf16">UTF-16</string>
     <string name="field_url">URL (with scheme, for example https://)</string>
     <string name="field_phone">Phone number</string>
+    <string name="field_sms_body">Message</string>
+    <string name="field_app_package">Package name (for example com.example.app)</string>
     <string name="field_email_address">Email address</string>
     <string name="field_email_subject">Subject</string>
     <string name="field_email_body">Message</string>
@@ -130,6 +138,10 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="field_last_name">Last name</string>
     <string name="field_organization">Organization</string>
     <string name="field_website">Website</string>
+    <string name="field_street">Street</string>
+    <string name="field_city">City</string>
+    <string name="field_postal_code">Postal code</string>
+    <string name="field_country">Country</string>
     <string name="field_mime_type">MIME type</string>
     <string name="field_mime_data">Data (text)</string>
     <string name="field_set_name">Set name</string>
@@ -184,9 +196,13 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="history_clear_body">All saved scans will be deleted.</string>
     <string name="history_clear_confirm">Clear</string>
     <string name="history_delete_entry">Delete this entry</string>
+    <string name="history_search">Search by UID or content</string>
+    <string name="history_no_matches">No scans match the search.</string>
 
     <string name="saved_new">New set</string>
     <string name="saved_empty">No saved sets yet.</string>
+    <string name="saved_duplicate">Duplicate</string>
+    <string name="saved_copy_name">%1$s (copy)</string>
     <string name="saved_delete_title">Delete set?</string>
     <string name="saved_delete_body">The saved set will be deleted.</string>
 
