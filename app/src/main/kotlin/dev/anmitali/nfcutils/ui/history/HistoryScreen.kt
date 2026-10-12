@@ -17,6 +17,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -40,11 +41,12 @@ import java.util.Date
 @Composable
 fun HistoryScreen(container: AppContainer, onOpen: (Long) -> Unit, modifier: Modifier = Modifier) {
     val viewModel: HistoryViewModel = viewModel(factory = HistoryViewModel.factory(container))
-    val entries by viewModel.entries.collectAsStateWithLifecycle()
+    val state by viewModel.state.collectAsStateWithLifecycle()
+    val query by viewModel.query.collectAsStateWithLifecycle()
     var confirmClear by rememberSaveable { mutableStateOf(false) }
-    val list = entries ?: return
+    val current = state ?: return
 
-    if (list.isEmpty()) {
+    if (!current.hasAny) {
         Column(modifier = modifier.fillMaxSize().padding(24.dp)) {
             Text(text = stringResource(R.string.history_empty), style = MaterialTheme.typography.bodyLarge)
         }
@@ -56,10 +58,24 @@ fun HistoryScreen(container: AppContainer, onOpen: (Long) -> Unit, modifier: Mod
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
+        item(key = "search") {
+            OutlinedTextField(
+                value = query,
+                onValueChange = viewModel::setQuery,
+                label = { Text(stringResource(R.string.history_search)) },
+                singleLine = true,
+                modifier = Modifier.fillMaxWidth(),
+            )
+        }
         item(key = "clear") {
             OutlinedButton(onClick = { confirmClear = true }) { Text(stringResource(R.string.history_clear)) }
         }
-        items(list, key = { it.id }) { entry -> HistoryEntryCard(entry, onClick = { onOpen(entry.id) }) }
+        if (current.entries.isEmpty()) {
+            item(key = "no-matches") {
+                Text(text = stringResource(R.string.history_no_matches), style = MaterialTheme.typography.bodyLarge)
+            }
+        }
+        items(current.entries, key = { it.id }) { entry -> HistoryEntryCard(entry, onClick = { onOpen(entry.id) }) }
     }
 
     if (confirmClear) {

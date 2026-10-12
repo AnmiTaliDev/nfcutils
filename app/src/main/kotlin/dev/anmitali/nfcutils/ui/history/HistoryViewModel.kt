@@ -10,14 +10,27 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import dev.anmitali.nfcutils.AppContainer
 import dev.anmitali.nfcutils.data.HistoryDao
 import dev.anmitali.nfcutils.data.HistoryEntryEntity
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
+class HistoryUiState(val entries: List<HistoryEntryEntity>, val hasAny: Boolean)
+
 class HistoryViewModel(private val historyDao: HistoryDao) : ViewModel() {
-    val entries: StateFlow<List<HistoryEntryEntity>?> = historyDao.observeEntries()
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
+    private val mutableQuery = MutableStateFlow("")
+    val query: StateFlow<String> = mutableQuery.asStateFlow()
+
+    val state: StateFlow<HistoryUiState?> = combine(historyDao.observeEntries(), mutableQuery) { all, query ->
+        HistoryUiState(all.filter { matchesHistoryQuery(it.uid, it.summary, query) }, all.isNotEmpty())
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
+
+    fun setQuery(value: String) {
+        mutableQuery.value = value
+    }
 
     fun clearAll() {
         viewModelScope.launch { historyDao.deleteAll() }
