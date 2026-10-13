@@ -19,6 +19,8 @@ fun TagType.labelRes(): Int = when (this) {
     TagType.MifareClassic -> R.string.tag_type_mifare_classic
     TagType.MifareUltralight -> R.string.tag_type_mifare_ultralight
     TagType.MifareUltralightC -> R.string.tag_type_mifare_ultralight_c
+    TagType.UltralightEv1Ul21 -> R.string.tag_type_ultralight_ev1_ul21
+    TagType.Ntag212 -> R.string.tag_type_ntag212
     TagType.Ntag213 -> R.string.tag_type_ntag213
     TagType.Ntag215 -> R.string.tag_type_ntag215
     TagType.Ntag216 -> R.string.tag_type_ntag216

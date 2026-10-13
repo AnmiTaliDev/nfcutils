@@ -11,6 +11,8 @@ enum class TagType {
     MifareClassic,
     MifareUltralight,
     MifareUltralightC,
+    UltralightEv1Ul21,
+    Ntag212,
     Ntag213,
     Ntag215,
     Ntag216,
@@ -25,24 +27,15 @@ enum class TagType {
 
 const val ULTRALIGHT_TYPE_C = 2
 
-private const val NTAG213_NDEF_SIZE = 144
-private const val NTAG215_NDEF_SIZE = 496
-private const val NTAG216_NDEF_SIZE = 872
-
 fun classifyTag(
     technologies: List<String>,
     ndefType: String?,
     ultralightType: Int?,
-    ndefMaxSize: Int?,
+    identifiedUltralight: TagType?,
 ): TagType {
     if ("MifareUltralight" in technologies) {
         if (ultralightType == ULTRALIGHT_TYPE_C) return TagType.MifareUltralightC
-        return when (ndefMaxSize) {
-            NTAG213_NDEF_SIZE -> TagType.Ntag213
-            NTAG215_NDEF_SIZE -> TagType.Ntag215
-            NTAG216_NDEF_SIZE -> TagType.Ntag216
-            else -> TagType.MifareUltralight
-        }
+        return identifiedUltralight ?: TagType.MifareUltralight
     }
     when (ndefType) {
         "org.nfcforum.ndef.type1" -> return TagType.NfcForumType1

@@ -29,6 +29,13 @@ private class NdefSnapshot(
     val readable: Boolean,
 )
 
+private class UltralightDump(
+    val pages: List<TagPage>,
+    val family: UltralightFamily?,
+    val counter: Int?,
+    val signature: String?,
+)
+
 class TagReader {
     sealed interface Result {
         class Success(val details: TagDetails, val records: List<NdefRecordData>) : Result
@@ -43,7 +50,7 @@ class TagReader {
         try {
             val ndef = if (unsupported) null else Ndef.get(tag)?.let { readNdef(it) }
             val ultralight = if (unsupported) null else MifareUltralight.get(tag)
-            val pages = if (ultralight == null) emptyList() else readPages(ultralight)
+            val dump = if (ultralight == null) null else readUltralight(ultralight, ndef?.maxSize)
             val records = ndef?.records.orEmpty()
             val usedSize = when {
                 ndef == null || !ndef.readable -> null
@@ -53,7 +60,7 @@ class TagReader {
             val details = TagDetails(
                 scannedAt = System.currentTimeMillis(),
                 uid = tag.id.toHex(":"),
-                tagType = classifyTag(technologies, ndef?.type, ultralight?.type, ndef?.maxSize),
+                tagType = classifyTag(technologies, ndef?.type, ultralight?.type, dump?.family?.type),
                 technologies = technologies,
                 atqa = nfcA?.atqa?.toHex(),
                 sak = nfcA?.sak?.toInt(),
@@ -64,7 +71,9 @@ class TagReader {
                 formatable = "NdefFormatable" in technologies,
                 unsupported = unsupported,
                 records = records.map { describeRecord(it) },
-                pages = pages,
+                pages = dump?.pages.orEmpty(),
+                nfcCounter = dump?.counter,
+                signature = dump?.signature,
             )
             return Result.Success(details, records)
         } catch (e: TagLostException) {
@@ -93,18 +102,47 @@ class TagReader {
         )
     }
 
-    private fun readPages(ultralight: MifareUltralight): List<TagPage> = ultralight.use {
+    private fun transceive(ultralight: MifareUltralight, command: ByteArray): ByteArray? = try {
+        ultralight.transceive(command)
+    } catch (e: IOException) {
+        null
+    }
+
+    private fun readChunk(ultralight: MifareUltralight, offset: Int): ByteArray? = try {
+        ultralight.readPages(offset)
+    } catch (e: IOException) {
+        null
+    }
+
+    private fun readUltralight(ultralight: MifareUltralight, ndefMaxSize: Int?): UltralightDump = ultralight.use {
         it.connect()
+        val versioned = it.type != ULTRALIGHT_TYPE_C && ndefMaxSize in VersionedNdefSizes
+        val family = if (versioned) transceive(it, GetVersionCommand)?.let { v -> identifyUltralightFamily(v) } else null
+        val signature = if (family != null) transceive(it, ReadSignatureCommand)?.let { r -> parseSignature(r) } else null
+        val pages = if (family != null) readKnownPages(it, family.pageCount) else readPagesUntilEnd(it)
+        val counter = if (family?.hasCounter == true) transceive(it, ReadCounterCommand)?.let { r -> parseCounter(r) } else null
+        UltralightDump(pages.mapIndexed { index, page -> TagPage(index, page.toHex()) }, family, counter, signature)
+    }
+
+    private fun readKnownPages(ultralight: MifareUltralight, pageCount: Int): List<ByteArray> {
+        val pages = mutableListOf<ByteArray>()
+        var offset = 0
+        while (offset < pageCount) {
+            val chunk = readChunk(ultralight, offset) ?: break
+            for (index in 0 until PAGES_PER_READ) {
+                if (offset + index >= pageCount) break
+                pages.add(chunk.copyOfRange(index * PAGE_SIZE, (index + 1) * PAGE_SIZE))
+            }
+            offset += PAGES_PER_READ
+        }
+        return pages
+    }
+
+    private fun readPagesUntilEnd(ultralight: MifareUltralight): List<ByteArray> {
         val pages = mutableListOf<ByteArray>()
         var offset = 0
         search@ while (offset < MAX_PAGES) {
-            val chunk = try {
-                it.readPages(offset)
-            } catch (e: TagLostException) {
-                throw e
-            } catch (e: IOException) {
-                break
-            }
+            val chunk = readChunk(ultralight, offset) ?: break
             for (index in 0 until PAGES_PER_READ) {
                 val page = chunk.copyOfRange(index * PAGE_SIZE, (index + 1) * PAGE_SIZE)
                 if (pages.isNotEmpty() && page.contentEquals(pages[0])) break@search
@@ -112,6 +150,6 @@ class TagReader {
             }
             offset += PAGES_PER_READ
         }
-        pages.mapIndexed { index, page -> TagPage(index, page.toHex()) }
+        return pages
     }
 }

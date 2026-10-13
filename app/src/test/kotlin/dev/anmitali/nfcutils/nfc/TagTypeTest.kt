@@ -7,44 +7,46 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class TagTypeTest {
+    private val ultralightTechs = listOf("NfcA", "MifareUltralight", "Ndef")
+
     @Test
     fun ultralightCIsDetectedFromTechnologyType() {
         assertEquals(
             TagType.MifareUltralightC,
-            classifyTag(listOf("NfcA", "MifareUltralight", "Ndef"), "org.nfcforum.ndef.type2", 2, 144),
+            classifyTag(ultralightTechs, "org.nfcforum.ndef.type2", 2, null),
         )
     }
 
     @Test
-    fun ntagVariantsAreDetectedFromMemorySize() {
-        val techs = listOf("NfcA", "MifareUltralight", "Ndef")
-        assertEquals(TagType.Ntag213, classifyTag(techs, "org.nfcforum.ndef.type2", 1, 144))
-        assertEquals(TagType.Ntag215, classifyTag(techs, "org.nfcforum.ndef.type2", 1, 496))
-        assertEquals(TagType.Ntag216, classifyTag(techs, "org.nfcforum.ndef.type2", 1, 872))
+    fun ultralightCStaysUltralightCEvenIfIdentified() {
+        assertEquals(TagType.MifareUltralightC, classifyTag(ultralightTechs, null, 2, TagType.Ntag213))
     }
 
     @Test
-    fun otherUltralightSizesAreGenericUltralight() {
-        assertEquals(
-            TagType.MifareUltralight,
-            classifyTag(listOf("NfcA", "MifareUltralight", "Ndef"), "org.nfcforum.ndef.type2", 1, 48),
-        )
+    fun identifiedFamilyWinsOverGenericUltralight() {
+        assertEquals(TagType.Ntag213, classifyTag(ultralightTechs, "org.nfcforum.ndef.type2", 1, TagType.Ntag213))
+        assertEquals(TagType.Ntag216, classifyTag(ultralightTechs, "org.nfcforum.ndef.type2", 1, TagType.Ntag216))
+    }
+
+    @Test
+    fun unidentifiedUltralightIsGeneric() {
+        assertEquals(TagType.MifareUltralight, classifyTag(ultralightTechs, "org.nfcforum.ndef.type2", 1, null))
         assertEquals(TagType.MifareUltralight, classifyTag(listOf("NfcA", "MifareUltralight"), null, 1, null))
     }
 
     @Test
     fun nfcForumTypesAreDetectedFromNdefType() {
-        assertEquals(TagType.NfcForumType1, classifyTag(listOf("NfcA", "Ndef"), "org.nfcforum.ndef.type1", null, 100))
-        assertEquals(TagType.NfcForumType2, classifyTag(listOf("NfcA", "Ndef"), "org.nfcforum.ndef.type2", null, 100))
-        assertEquals(TagType.NfcForumType3, classifyTag(listOf("NfcF", "Ndef"), "org.nfcforum.ndef.type3", null, 100))
-        assertEquals(TagType.NfcForumType4, classifyTag(listOf("IsoDep", "NfcA", "Ndef"), "org.nfcforum.ndef.type4", null, 100))
+        assertEquals(TagType.NfcForumType1, classifyTag(listOf("NfcA", "Ndef"), "org.nfcforum.ndef.type1", null, null))
+        assertEquals(TagType.NfcForumType2, classifyTag(listOf("NfcA", "Ndef"), "org.nfcforum.ndef.type2", null, null))
+        assertEquals(TagType.NfcForumType3, classifyTag(listOf("NfcF", "Ndef"), "org.nfcforum.ndef.type3", null, null))
+        assertEquals(TagType.NfcForumType4, classifyTag(listOf("IsoDep", "NfcA", "Ndef"), "org.nfcforum.ndef.type4", null, null))
     }
 
     @Test
     fun mifareClassicIsDetectedWithAndWithoutNdef() {
         assertEquals(
             TagType.MifareClassic,
-            classifyTag(listOf("NfcA", "MifareClassic", "Ndef"), "com.nxp.ndef.mifareclassic", null, 716),
+            classifyTag(listOf("NfcA", "MifareClassic", "Ndef"), "com.nxp.ndef.mifareclassic", null, null),
         )
         assertEquals(TagType.MifareClassic, classifyTag(listOf("NfcA", "MifareClassic"), null, null, null))
     }

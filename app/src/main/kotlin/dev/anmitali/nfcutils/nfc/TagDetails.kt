@@ -22,4 +22,6 @@ class TagDetails(
     val unsupported: Boolean,
     val records: List<RecordInfo>,
     val pages: List<TagPage>,
+    val nfcCounter: Int? = null,
+    val signature: String? = null,
 )
