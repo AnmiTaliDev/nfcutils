@@ -3,13 +3,19 @@
 
 package dev.anmitali.nfcutils.ui.navigation
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationRail
+import androidx.compose.material3.NavigationRailItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -21,7 +27,10 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -34,6 +43,9 @@ import dev.anmitali.nfcutils.AppContainer
 import dev.anmitali.nfcutils.R
 import dev.anmitali.nfcutils.ui.common.NfcStatusBanner
 
+private val WIDE_SCREEN_WIDTH = 600.dp
+private val CONTENT_MAX_WIDTH = 720.dp
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppScaffold(container: AppContainer) {
@@ -44,6 +56,8 @@ fun AppScaffold(container: AppContainer) {
     val availability by container.nfcStatus.state.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
     val onTab by rememberUpdatedState(currentTab != null)
+    val windowWidth = with(LocalDensity.current) { LocalWindowInfo.current.containerSize.width.toDp() }
+    val wide = windowWidth >= WIDE_SCREEN_WIDTH
 
     LaunchedEffect(Unit) {
         container.session.scanEvents.collect {
@@ -71,7 +85,7 @@ fun AppScaffold(container: AppContainer) {
             )
         },
         bottomBar = {
-            if (currentTab != null) {
+            if (currentTab != null && !wide) {
                 NavigationBar {
                     for (tab in Tab.entries) {
                         NavigationBarItem(
@@ -86,17 +100,33 @@ fun AppScaffold(container: AppContainer) {
         },
         snackbarHost = { SnackbarHost(snackbarHostState) },
     ) { padding ->
-        Column(modifier = Modifier.padding(padding)) {
-            if (currentTab != null) {
-                NfcStatusBanner(availability, Modifier.padding(horizontal = 16.dp, vertical = 8.dp))
+        Row(modifier = Modifier.padding(padding)) {
+            if (currentTab != null && wide) {
+                NavigationRail {
+                    for (tab in Tab.entries) {
+                        NavigationRailItem(
+                            selected = tab == currentTab,
+                            onClick = { navigateToTab(navController, tab) },
+                            icon = { Icon(painterResource(tab.icon), contentDescription = null) },
+                            label = { Text(stringResource(tab.label)) },
+                        )
+                    }
+                }
             }
-            AppNavHost(
-                container = container,
-                navController = navController,
-                snackbarHostState = snackbarHostState,
-                onOpenEditor = { navigateToTab(navController, Tab.Write) },
-                modifier = Modifier.weight(1f),
-            )
+            Box(modifier = Modifier.weight(1f).fillMaxHeight(), contentAlignment = Alignment.TopCenter) {
+                Column(modifier = Modifier.widthIn(max = CONTENT_MAX_WIDTH).fillMaxHeight()) {
+                    if (currentTab != null) {
+                        NfcStatusBanner(availability, Modifier.padding(horizontal = 16.dp, vertical = 8.dp))
+                    }
+                    AppNavHost(
+                        container = container,
+                        navController = navController,
+                        snackbarHostState = snackbarHostState,
+                        onOpenEditor = { navigateToTab(navController, Tab.Write) },
+                        modifier = Modifier.weight(1f),
+                    )
+                }
+            }
         }
     }
 }
