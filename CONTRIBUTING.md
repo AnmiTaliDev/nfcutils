@@ -24,7 +24,7 @@ Writing, locking and tag reading paths use `android.nfc` and have to be checked 
 2. Keep the change focused. Unrelated fixes go into separate pull requests.
 3. Run the build and the unit tests before submitting.
 4. Open a pull request and describe what changed and why.
-5. User-visible text goes into `app/src/main/res/values/strings.xml`, not into Kotlin code.
+5. User-visible text goes into `app/src/main/res/values/strings.xml`, not into Kotlin code. Translations live in `values-<language>/strings.xml`; a new string has to be added to every language file.
 6. New source files start with the SPDX header used in the existing files.
 
 ## License
