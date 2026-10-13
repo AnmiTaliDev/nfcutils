@@ -20,6 +20,13 @@ abstract class HistoryDao {
     @Query("SELECT * FROM history_entry WHERE id = :id")
     abstract fun observeDetail(id: Long): Flow<HistoryDetail?>
 
+    @Transaction
+    @Query("SELECT * FROM history_entry ORDER BY scannedAt DESC, id DESC")
+    abstract suspend fun getAllDetails(): List<HistoryDetail>
+
+    @Query("SELECT COUNT(*) FROM history_entry WHERE uid = :uid AND scannedAt = :scannedAt")
+    abstract suspend fun countMatching(uid: String, scannedAt: Long): Int
+
     @Insert
     protected abstract suspend fun insertEntry(entry: HistoryEntryEntity): Long
 
@@ -55,6 +62,8 @@ abstract class HistoryDao {
                 formatable = details.formatable,
                 unsupported = details.unsupported,
                 summary = entrySummary(details.records),
+                nfcCounter = details.nfcCounter,
+                signature = details.signature,
             ),
         )
         insertTechnologies(details.technologies.map { HistoryTechnologyEntity(0, entryId, it) })

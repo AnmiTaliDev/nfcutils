@@ -22,4 +22,6 @@ fun HistoryDetail.toTagDetails(): TagDetails = TagDetails(
     unsupported = entry.unsupported,
     records = records.sortedBy { it.position }.map { RecordInfo(it.kind, it.summary, it.detail, it.payloadHex) },
     pages = pages.sortedBy { it.pageIndex }.map { TagPage(it.pageIndex, it.hex) },
+    nfcCounter = entry.nfcCounter,
+    signature = entry.signature,
 )

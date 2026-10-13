@@ -27,6 +27,8 @@ class HistoryEntryEntity(
     val formatable: Boolean,
     val unsupported: Boolean,
     val summary: String,
+    val nfcCounter: Int?,
+    val signature: String?,
 )
 
 @Entity(

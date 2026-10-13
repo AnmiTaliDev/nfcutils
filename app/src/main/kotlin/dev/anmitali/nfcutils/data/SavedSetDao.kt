@@ -17,6 +17,10 @@ abstract class SavedSetDao {
     abstract fun observeSets(): Flow<List<SavedSetWithRecords>>
 
     @Transaction
+    @Query("SELECT * FROM saved_set ORDER BY updatedAt DESC, id DESC")
+    abstract suspend fun getAllSets(): List<SavedSetWithRecords>
+
+    @Transaction
     @Query("SELECT * FROM saved_set WHERE id = :id")
     abstract suspend fun getSet(id: Long): SavedSetWithRecords?
 
