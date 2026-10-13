@@ -59,6 +59,7 @@ fun AppNavHost(
         composable(Routes.SETTINGS) {
             SettingsScreen(
                 container,
+                snackbarHostState,
                 onOpenAbout = { navController.navigate(Routes.ABOUT) },
                 onOpenNotices = { navController.navigate(Routes.NOTICES) },
             )

@@ -3,6 +3,8 @@
 
 package dev.anmitali.nfcutils.ui.settings
 
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -17,16 +19,19 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.RadioButton
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -46,13 +51,29 @@ private fun ThemeMode.labelRes(): Int = when (this) {
 @Composable
 fun SettingsScreen(
     container: AppContainer,
+    snackbarHostState: SnackbarHostState,
     onOpenAbout: () -> Unit,
     onOpenNotices: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val viewModel: SettingsViewModel = viewModel(factory = SettingsViewModel.factory(container))
     val settings by viewModel.settings.collectAsStateWithLifecycle()
+    val message by viewModel.message.collectAsStateWithLifecycle()
     var confirmClear by rememberSaveable { mutableStateOf(false) }
+    val resolver = LocalContext.current.contentResolver
+    val exportLauncher = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("text/plain")) { uri ->
+        if (uri != null) viewModel.exportTo(resolver, uri)
+    }
+    val importLauncher = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+        if (uri != null) viewModel.importFrom(resolver, uri)
+    }
+    val messageText = message?.let { stringResource(it.resource, *it.arguments.toTypedArray()) }
+    LaunchedEffect(messageText) {
+        if (messageText != null) {
+            snackbarHostState.showSnackbar(messageText)
+            viewModel.messageShown()
+        }
+    }
 
     Column(
         modifier = modifier.verticalScroll(rememberScrollState()).padding(16.dp),
@@ -98,6 +119,22 @@ fun SettingsScreen(
                 )
             }
             Switch(checked = settings.dynamicColor, onCheckedChange = null)
+        }
+        Text(
+            text = stringResource(R.string.settings_data_title),
+            style = MaterialTheme.typography.titleMedium,
+            modifier = Modifier.padding(top = 16.dp),
+        )
+        Text(
+            text = stringResource(R.string.settings_data_body),
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        OutlinedButton(onClick = { exportLauncher.launch("nfc-utils-export.txt") }) {
+            Text(stringResource(R.string.settings_export))
+        }
+        OutlinedButton(onClick = { importLauncher.launch(arrayOf("text/plain", "application/octet-stream")) }) {
+            Text(stringResource(R.string.settings_import))
         }
         OutlinedButton(onClick = { confirmClear = true }, modifier = Modifier.padding(top = 16.dp)) {
             Text(stringResource(R.string.history_clear))
