@@ -67,9 +67,9 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="tag_type_mifare_classic">MIFARE Classic</string>
     <string name="tag_type_mifare_ultralight">MIFARE Ultralight</string>
     <string name="tag_type_mifare_ultralight_c">MIFARE Ultralight C</string>
-    <string name="tag_type_ntag213">NTAG213 (жад көлемі бойынша)</string>
-    <string name="tag_type_ntag215">NTAG215 (жад көлемі бойынша)</string>
-    <string name="tag_type_ntag216">NTAG216 (жад көлемі бойынша)</string>
+    <string name="tag_type_ntag213">NTAG213</string>
+    <string name="tag_type_ntag215">NTAG215</string>
+    <string name="tag_type_ntag216">NTAG216</string>
     <string name="tag_type_iso15693">ISO 15693</string>
     <string name="tag_type_felica">FeliCa (NFC-F)</string>
     <string name="tag_type_iso14443_4">ISO 14443-4</string>
@@ -199,4 +199,16 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="notices_intro">NFC Utils төменде аталған үшінші тарап компоненттерін пайдаланады. Олардың барлығы Apache License 2.0 лицензиясымен таратылады, лицензия мәтіні төменде берілген.</string>
     <string name="notices_components_title">Компоненттер</string>
     <string name="notices_license_title">Apache License 2.0</string>
+    <string name="info_nfc_counter">NFC есептегіші</string>
+    <string name="info_signature">Қолтаңба (шикі)</string>
+    <string name="settings_data_title">Деректер</string>
+    <string name="settings_data_body">Экспорт файлы шифрланбайды. Онда сақталған жинақтар мен сканерлеу тарихы, соның ішінде Wi-Fi құпиясөздері бар.</string>
+    <string name="settings_export">Деректерді экспорттау</string>
+    <string name="settings_import">Деректерді импорттау</string>
+    <string name="message_export_done">Экспортталды. Жинақтар: %1$d, сканерлеулер: %2$d.</string>
+    <string name="message_import_done">Импортталды. Жинақтар: %1$d, сканерлеулер: %2$d.</string>
+    <string name="message_export_failed">Файлды жазу мүмкін болмады.</string>
+    <string name="message_import_failed">Файлды оқу мүмкін болмады. Бұл NFC Utils экспорты емес.</string>
+    <string name="tag_type_ntag212">NTAG212</string>
+    <string name="tag_type_ultralight_ev1_ul21">MIFARE Ultralight EV1 (MF0UL21)</string>
 </resources>

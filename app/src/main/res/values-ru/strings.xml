@@ -67,9 +67,9 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="tag_type_mifare_classic">MIFARE Classic</string>
     <string name="tag_type_mifare_ultralight">MIFARE Ultralight</string>
     <string name="tag_type_mifare_ultralight_c">MIFARE Ultralight C</string>
-    <string name="tag_type_ntag213">NTAG213 (по объёму памяти)</string>
-    <string name="tag_type_ntag215">NTAG215 (по объёму памяти)</string>
-    <string name="tag_type_ntag216">NTAG216 (по объёму памяти)</string>
+    <string name="tag_type_ntag213">NTAG213</string>
+    <string name="tag_type_ntag215">NTAG215</string>
+    <string name="tag_type_ntag216">NTAG216</string>
     <string name="tag_type_iso15693">ISO 15693</string>
     <string name="tag_type_felica">FeliCa (NFC-F)</string>
     <string name="tag_type_iso14443_4">ISO 14443-4</string>
@@ -199,4 +199,16 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="notices_intro">NFC Utils использует перечисленные ниже сторонние компоненты. Все они распространяются по лицензии Apache License 2.0, её текст приведён далее.</string>
     <string name="notices_components_title">Компоненты</string>
     <string name="notices_license_title">Apache License 2.0</string>
+    <string name="info_nfc_counter">Счётчик NFC</string>
+    <string name="info_signature">Подпись (сырая)</string>
+    <string name="settings_data_title">Данные</string>
+    <string name="settings_data_body">Файл экспорта не шифруется. В нём сохранённые наборы и история сканов, включая пароли Wi-Fi.</string>
+    <string name="settings_export">Экспорт данных</string>
+    <string name="settings_import">Импорт данных</string>
+    <string name="message_export_done">Экспорт выполнен. Наборов: %1$d, сканов: %2$d.</string>
+    <string name="message_import_done">Импорт выполнен. Наборов: %1$d, сканов: %2$d.</string>
+    <string name="message_export_failed">Не удалось записать файл.</string>
+    <string name="message_import_failed">Не удалось прочитать файл. Это не экспорт NFC Utils.</string>
+    <string name="tag_type_ntag212">NTAG212</string>
+    <string name="tag_type_ultralight_ev1_ul21">MIFARE Ultralight EV1 (MF0UL21)</string>
 </resources>

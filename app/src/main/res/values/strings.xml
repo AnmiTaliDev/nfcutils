@@ -3,7 +3,7 @@
 SPDX-License-Identifier: GPL-3.0-only
 SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
 -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name" translatable="false">NFC Utils</string>
 
     <string name="tab_scan">Scan</string>
@@ -76,9 +76,9 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="tag_type_mifare_classic">MIFARE Classic</string>
     <string name="tag_type_mifare_ultralight">MIFARE Ultralight</string>
     <string name="tag_type_mifare_ultralight_c">MIFARE Ultralight C</string>
-    <string name="tag_type_ntag213">NTAG213 (by memory size)</string>
-    <string name="tag_type_ntag215">NTAG215 (by memory size)</string>
-    <string name="tag_type_ntag216">NTAG216 (by memory size)</string>
+    <string name="tag_type_ntag213">NTAG213</string>
+    <string name="tag_type_ntag215">NTAG215</string>
+    <string name="tag_type_ntag216">NTAG216</string>
     <string name="tag_type_iso15693">ISO 15693</string>
     <string name="tag_type_felica">FeliCa (NFC-F)</string>
     <string name="tag_type_iso14443_4">ISO 14443-4</string>
@@ -227,4 +227,16 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="notices_component_kotlin" translatable="false">Kotlin standard library</string>
     <string name="notices_component_coroutines" translatable="false">kotlinx.coroutines</string>
     <string name="notices_license_title">Apache License 2.0</string>
+    <string name="info_nfc_counter">NFC counter</string>
+    <string name="info_signature">Signature (raw)</string>
+    <string name="settings_data_title">Data</string>
+    <string name="settings_data_body">The export file is not encrypted. It contains saved sets and scan history, including Wi-Fi passwords.</string>
+    <string name="settings_export">Export data</string>
+    <string name="settings_import">Import data</string>
+    <string name="message_export_done">Exported. Sets: %1$d, scans: %2$d.</string>
+    <string name="message_import_done">Imported. Sets: %1$d, scans: %2$d.</string>
+    <string name="message_export_failed">Could not write the file.</string>
+    <string name="message_import_failed">Could not read the file. It is not a valid NFC Utils export.</string>
+    <string name="tag_type_ntag212">NTAG212</string>
+    <string name="tag_type_ultralight_ev1_ul21" tools:ignore="Typos">MIFARE Ultralight EV1 (MF0UL21)</string>
 </resources>
