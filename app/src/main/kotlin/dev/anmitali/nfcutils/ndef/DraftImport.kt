@@ -7,7 +7,7 @@ import java.io.ByteArrayOutputStream
 
 private fun draft(kind: DraftKind, vararg fields: Pair<String, String>) = RecordDraft(kind, mapOf(*fields))
 
-private fun percentDecode(value: String): String {
+fun percentDecode(value: String): String {
     val out = ByteArrayOutputStream()
     var index = 0
     while (index < value.length) {
