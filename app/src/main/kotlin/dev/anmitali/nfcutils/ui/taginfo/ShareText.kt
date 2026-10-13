@@ -21,6 +21,8 @@ fun buildShareText(context: Context, details: TagDetails): String {
     if (details.sak != null) lines.add(line(R.string.info_sak, "0x" + details.sak.toString(16).uppercase().padStart(2, '0')))
     lines.add(line(R.string.info_memory_size, bytes(details.maxSize)))
     lines.add(line(R.string.info_used_size, bytes(details.usedSize)))
+    if (details.nfcCounter != null) lines.add(line(R.string.info_nfc_counter, details.nfcCounter.toString()))
+    if (details.signature != null) lines.add(line(R.string.info_signature, details.signature))
     for (record in details.records) {
         lines.add("")
         lines.add(context.getString(record.kind.labelRes()) + if (record.summary.isEmpty()) "" else ": " + record.summary)

@@ -83,7 +83,7 @@ private fun SectionTitle(@StringRes title: Int) {
 }
 
 @Composable
-private fun InfoRow(@StringRes label: Int, value: String) {
+private fun InfoRow(@StringRes label: Int, value: String, fontFamily: FontFamily? = null) {
     Row(
         modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp),
@@ -95,7 +95,7 @@ private fun InfoRow(@StringRes label: Int, value: String) {
             modifier = Modifier.weight(0.4f),
         )
         SelectionContainer(modifier = Modifier.weight(0.6f)) {
-            Text(text = value, style = MaterialTheme.typography.bodyMedium)
+            Text(text = value, style = MaterialTheme.typography.bodyMedium, fontFamily = fontFamily)
         }
     }
 }
@@ -131,6 +131,10 @@ private fun TagInfoCard(details: TagDetails) {
             InfoRow(R.string.info_writable, yesNo(details.writable))
             InfoRow(R.string.info_can_make_read_only, yesNo(details.canMakeReadOnly))
             InfoRow(R.string.info_ndef_formatable, yesNo(details.formatable))
+            if (details.nfcCounter != null) InfoRow(R.string.info_nfc_counter, details.nfcCounter.toString())
+            if (details.signature != null) {
+                InfoRow(R.string.info_signature, details.signature, FontFamily.Monospace)
+            }
             InfoRow(R.string.info_scanned_at, scanned.ifEmpty { notAvailable })
         }
     }
