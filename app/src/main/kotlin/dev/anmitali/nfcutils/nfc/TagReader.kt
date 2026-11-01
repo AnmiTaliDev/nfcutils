@@ -60,7 +60,11 @@ class TagReader {
             val details = TagDetails(
                 scannedAt = System.currentTimeMillis(),
                 uid = tag.id.toHex(":"),
-                tagType = classifyTag(technologies, ndef?.type, ultralight?.type, dump?.family?.type),
+                tagType = refineTagType(
+                    classifyTag(technologies, ndef?.type, ultralight?.type, dump?.family?.type),
+                    nfcA?.sak?.toInt(),
+                    nfcA?.atqa?.toHex(),
+                ),
                 technologies = technologies,
                 atqa = nfcA?.atqa?.toHex(),
                 sak = nfcA?.sak?.toInt(),

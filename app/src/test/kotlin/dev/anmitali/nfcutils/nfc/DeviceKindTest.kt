@@ -17,6 +17,8 @@ class DeviceKindTest {
     @Test
     fun mifareClassicIsAccessCard() {
         assertEquals(DeviceKind.AccessCard, TagType.MifareClassic.deviceKind())
+        assertEquals(DeviceKind.AccessCard, TagType.MifareClassic1K.deviceKind())
+        assertEquals(DeviceKind.AccessCard, TagType.MifareDesfire.deviceKind())
     }
 
     @Test

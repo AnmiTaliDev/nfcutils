@@ -9,6 +9,10 @@ enum class TagType {
     NfcForumType3,
     NfcForumType4,
     MifareClassic,
+    MifareClassicMini,
+    MifareClassic1K,
+    MifareClassic4K,
+    MifareDesfire,
     MifareUltralight,
     MifareUltralightC,
     UltralightEv1Ul21,
@@ -54,4 +58,20 @@ fun classifyTag(
         "NfcBarcode" in technologies -> TagType.Barcode
         else -> TagType.Unknown
     }
+}
+
+private val ClassicMiniSak = setOf(0x09)
+private val Classic1KSak = setOf(0x08, 0x28, 0x88)
+private val Classic4KSak = setOf(0x18, 0x38)
+private const val DESFIRE_SAK = 0x20
+private const val DESFIRE_ATQA = "44 03"
+
+fun refineTagType(type: TagType, sak: Int?, atqa: String?): TagType = when {
+    type == TagType.MifareClassic && sak in ClassicMiniSak -> TagType.MifareClassicMini
+    type == TagType.MifareClassic && sak in Classic1KSak -> TagType.MifareClassic1K
+    type == TagType.MifareClassic && sak in Classic4KSak -> TagType.MifareClassic4K
+    sak == DESFIRE_SAK && atqa == DESFIRE_ATQA &&
+        (type == TagType.Iso14443Type4 || type == TagType.NfcForumType4 || type == TagType.Iso14443TypeA) ->
+        TagType.MifareDesfire
+    else -> type
 }

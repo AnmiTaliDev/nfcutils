@@ -26,7 +26,12 @@ fun TagType.deviceKind(): DeviceKind = when (this) {
     TagType.Ntag215,
     TagType.Ntag216,
     -> DeviceKind.NfcTag
-    TagType.MifareClassic -> DeviceKind.AccessCard
+    TagType.MifareClassic,
+    TagType.MifareClassicMini,
+    TagType.MifareClassic1K,
+    TagType.MifareClassic4K,
+    TagType.MifareDesfire,
+    -> DeviceKind.AccessCard
     TagType.Iso14443Type4, TagType.Iso14443TypeB -> DeviceKind.SmartCard
     TagType.FeliCa -> DeviceKind.FeliCaCard
     TagType.Iso15693 -> DeviceKind.Iso15693Tag

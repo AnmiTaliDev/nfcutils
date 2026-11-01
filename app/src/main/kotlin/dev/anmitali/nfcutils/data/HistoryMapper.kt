@@ -6,11 +6,12 @@ package dev.anmitali.nfcutils.data
 import dev.anmitali.nfcutils.ndef.RecordInfo
 import dev.anmitali.nfcutils.nfc.TagDetails
 import dev.anmitali.nfcutils.nfc.TagPage
+import dev.anmitali.nfcutils.nfc.refineTagType
 
 fun HistoryDetail.toTagDetails(): TagDetails = TagDetails(
     scannedAt = entry.scannedAt,
     uid = entry.uid,
-    tagType = entry.tagType,
+    tagType = refineTagType(entry.tagType, entry.sak, entry.atqa),
     technologies = technologies.sortedBy { it.id }.map { it.name },
     atqa = entry.atqa,
     sak = entry.sak,

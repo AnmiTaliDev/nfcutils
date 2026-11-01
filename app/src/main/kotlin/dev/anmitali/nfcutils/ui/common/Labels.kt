@@ -19,6 +19,10 @@ fun TagType.labelRes(): Int = when (this) {
     TagType.NfcForumType3 -> R.string.tag_type_nfc_forum_type_3
     TagType.NfcForumType4 -> R.string.tag_type_nfc_forum_type_4
     TagType.MifareClassic -> R.string.tag_type_mifare_classic
+    TagType.MifareClassicMini -> R.string.tag_type_mifare_classic_mini
+    TagType.MifareClassic1K -> R.string.tag_type_mifare_classic_1k
+    TagType.MifareClassic4K -> R.string.tag_type_mifare_classic_4k
+    TagType.MifareDesfire -> R.string.tag_type_mifare_desfire
     TagType.MifareUltralight -> R.string.tag_type_mifare_ultralight
     TagType.MifareUltralightC -> R.string.tag_type_mifare_ultralight_c
     TagType.UltralightEv1Ul21 -> R.string.tag_type_ultralight_ev1_ul21

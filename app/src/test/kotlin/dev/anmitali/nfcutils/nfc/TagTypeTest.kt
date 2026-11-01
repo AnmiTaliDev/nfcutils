@@ -61,4 +61,28 @@ class TagTypeTest {
         assertEquals(TagType.Barcode, classifyTag(listOf("NfcBarcode"), null, null, null))
         assertEquals(TagType.Unknown, classifyTag(emptyList(), null, null, null))
     }
+
+    @Test
+    fun classicSizeIsRefinedFromSak() {
+        assertEquals(TagType.MifareClassic1K, refineTagType(TagType.MifareClassic, 0x08, "04 00"))
+        assertEquals(TagType.MifareClassic1K, refineTagType(TagType.MifareClassic, 0x28, "04 00"))
+        assertEquals(TagType.MifareClassic4K, refineTagType(TagType.MifareClassic, 0x18, "02 00"))
+        assertEquals(TagType.MifareClassicMini, refineTagType(TagType.MifareClassic, 0x09, "04 00"))
+        assertEquals(TagType.MifareClassic, refineTagType(TagType.MifareClassic, 0x01, "04 00"))
+        assertEquals(TagType.MifareClassic, refineTagType(TagType.MifareClassic, null, null))
+    }
+
+    @Test
+    fun desfireNeedsSakAndAtqa() {
+        assertEquals(TagType.MifareDesfire, refineTagType(TagType.Iso14443Type4, 0x20, "44 03"))
+        assertEquals(TagType.MifareDesfire, refineTagType(TagType.NfcForumType4, 0x20, "44 03"))
+        assertEquals(TagType.Iso14443Type4, refineTagType(TagType.Iso14443Type4, 0x20, "04 00"))
+        assertEquals(TagType.Iso14443Type4, refineTagType(TagType.Iso14443Type4, 0x28, "44 03"))
+    }
+
+    @Test
+    fun otherTypesAreNotRefined() {
+        assertEquals(TagType.Ntag215, refineTagType(TagType.Ntag215, 0x08, "44 03"))
+        assertEquals(TagType.Unknown, refineTagType(TagType.Unknown, 0x20, "44 03"))
+    }
 }

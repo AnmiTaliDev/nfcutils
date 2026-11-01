@@ -102,6 +102,10 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="tag_type_nfc_forum_type_3">NFC Forum Type 3</string>
     <string name="tag_type_nfc_forum_type_4">NFC Forum Type 4</string>
     <string name="tag_type_mifare_classic">MIFARE Classic</string>
+    <string name="tag_type_mifare_classic_mini">MIFARE Classic Mini</string>
+    <string name="tag_type_mifare_classic_1k">MIFARE Classic 1K</string>
+    <string name="tag_type_mifare_classic_4k">MIFARE Classic 4K</string>
+    <string name="tag_type_mifare_desfire">MIFARE DESFire</string>
     <string name="tag_type_mifare_ultralight">MIFARE Ultralight</string>
     <string name="tag_type_mifare_ultralight_c">MIFARE Ultralight C</string>
     <string name="tag_type_ntag213">NTAG213</string>
