@@ -176,6 +176,10 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="operation_failed_title">Операция не удалась</string>
     <string name="failure_tag_lost">Метку убрали слишком рано. Держите её неподвижно и повторите.</string>
     <string name="failure_not_writable">Запись на метку невозможна. Возможно, она только для чтения или заблокирована.</string>
+    <string name="failure_not_empty">На метке уже есть данные. Запись заменит их.</string>
+    <string name="overwrite_title">Метка не пуста</string>
+    <string name="overwrite_more">и ещё %1$d</string>
+    <string name="action_overwrite">Перезаписать</string>
     <string name="failure_too_large">Сообщению нужно %1$d Б, а на метке доступно %2$d Б.</string>
     <string name="failure_unsupported_tag">Метка не поддерживает NDEF.</string>
     <string name="failure_not_formatted">Метка не отформатирована в NDEF, стирать нечего.</string>
