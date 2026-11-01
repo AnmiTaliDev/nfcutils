@@ -32,6 +32,7 @@ import dev.anmitali.nfcutils.ndef.RecordInfo
 import dev.anmitali.nfcutils.ndef.recordAction
 import dev.anmitali.nfcutils.nfc.TagDetails
 import dev.anmitali.nfcutils.nfc.TagPage
+import dev.anmitali.nfcutils.nfc.chipSpec
 import dev.anmitali.nfcutils.ui.common.labelRes
 import dev.anmitali.nfcutils.ui.common.openUri
 import dev.anmitali.nfcutils.ui.common.rememberCopyAction
@@ -41,6 +42,7 @@ import java.util.Date
 fun LazyListScope.tagDetailsItems(details: TagDetails) {
     item(key = "device") { DeviceKindCard(details.tagType) }
     item(key = "tag") { TagInfoCard(details) }
+    details.tagType.chipSpec()?.let { spec -> item(key = "chip") { ChipSpecCard(spec) } }
     item(key = "share") { ShareButton(details) }
     if (details.unsupported) {
         item(key = "unsupported") { UnsupportedCard() }
@@ -73,7 +75,7 @@ private fun SectionTitle(@StringRes title: Int) {
 }
 
 @Composable
-private fun InfoRow(@StringRes label: Int, value: String, fontFamily: FontFamily? = null) {
+internal fun InfoRow(@StringRes label: Int, value: String, fontFamily: FontFamily? = null) {
     val copy = rememberCopyAction()
     Row(
         modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),

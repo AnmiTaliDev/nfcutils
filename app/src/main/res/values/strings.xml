@@ -55,6 +55,15 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
 
     <string name="section_records">NDEF records</string>
     <string name="section_pages">Page dump</string>
+    <string name="section_chip_spec">Chip specification</string>
+    <string name="chip_memory_total">Total memory</string>
+    <string name="chip_memory_total_value">%1$d B (%2$d pages)</string>
+    <string name="chip_memory_user">User memory</string>
+    <string name="chip_features">Features</string>
+    <string name="chip_feature_password">Password protection</string>
+    <string name="chip_feature_counter">Counter</string>
+    <string name="chip_feature_signature">Originality signature</string>
+    <string name="chip_feature_triple_des">3DES authentication</string>
     <string name="records_none">The tag has no NDEF records.</string>
     <string name="record_payload_hex">Payload (hex)</string>
     <string name="record_payload_empty">Empty</string>
