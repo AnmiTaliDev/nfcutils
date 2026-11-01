@@ -207,6 +207,8 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="history_clear_confirm">Тазалау</string>
     <string name="history_delete_entry">Бұл жазбаны жою</string>
     <string name="history_search">UID немесе мазмұн бойынша іздеу</string>
+    <string name="history_pin">Бекіту</string>
+    <string name="history_unpin">Бекітуді алу</string>
     <string name="history_no_matches">Іздеуге сәйкес сканерлеулер жоқ.</string>
     <string name="saved_new">Жаңа жинақ</string>
     <string name="saved_empty">Сақталған жинақтар әлі жоқ.</string>
