@@ -25,6 +25,7 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="action_write">Записать</string>
     <string name="action_write_to_tag">Записать на метку</string>
     <string name="action_share">Поделиться</string>
+    <string name="copied_to_clipboard">Скопировано</string>
     <string name="share_chooser_title">Поделиться сканом</string>
     <string name="share_as_title">Поделиться как</string>
     <string name="share_as_text">Текст</string>
