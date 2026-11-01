@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectable
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -39,13 +38,12 @@ private val LanguageOptions = listOf(
 
 @RequiresApi(33)
 @Composable
-fun LanguageSetting() {
+fun LanguageScreen(modifier: Modifier = Modifier) {
     val localeManager = LocalContext.current.getSystemService(LocaleManager::class.java)
     var selected by remember {
         mutableStateOf(localeManager.applicationLocales.takeIf { !it.isEmpty }?.get(0)?.language.orEmpty())
     }
-    Column(modifier = Modifier.padding(top = 16.dp)) {
-        Text(text = stringResource(R.string.settings_language), style = MaterialTheme.typography.titleMedium)
+    Column(modifier = modifier.padding(16.dp)) {
         for (option in LanguageOptions) {
             Row(
                 modifier = Modifier

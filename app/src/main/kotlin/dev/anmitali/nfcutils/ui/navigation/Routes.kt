@@ -14,6 +14,9 @@ object Routes {
     const val HISTORY = "history"
     const val SAVED = "saved"
     const val SETTINGS = "settings"
+    const val APPEARANCE = "settings/appearance"
+    const val LANGUAGE = "settings/language"
+    const val DATA = "settings/data"
     const val ABOUT = "about"
     const val NOTICES = "notices"
     const val ARG_ID = "id"
@@ -36,6 +39,9 @@ enum class Tab(val route: String, @StringRes val label: Int, @DrawableRes val ic
 @StringRes
 fun titleFor(route: String?): Int = when (route) {
     Routes.SETTINGS -> R.string.screen_settings
+    Routes.APPEARANCE -> R.string.screen_appearance
+    Routes.LANGUAGE -> R.string.settings_language
+    Routes.DATA -> R.string.settings_data_title
     Routes.ABOUT -> R.string.screen_about
     Routes.NOTICES -> R.string.screen_notices
     Routes.HISTORY_DETAIL -> R.string.screen_history_detail

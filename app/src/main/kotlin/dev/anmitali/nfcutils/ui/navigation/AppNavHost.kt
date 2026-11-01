@@ -3,6 +3,7 @@
 
 package dev.anmitali.nfcutils.ui.navigation
 
+import android.os.Build
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -18,6 +19,9 @@ import dev.anmitali.nfcutils.ui.saved.SavedScreen
 import dev.anmitali.nfcutils.ui.saved.SetEditorScreen
 import dev.anmitali.nfcutils.ui.scan.ScanScreen
 import dev.anmitali.nfcutils.ui.settings.AboutScreen
+import dev.anmitali.nfcutils.ui.settings.AppearanceScreen
+import dev.anmitali.nfcutils.ui.settings.DataScreen
+import dev.anmitali.nfcutils.ui.settings.LanguageScreen
 import dev.anmitali.nfcutils.ui.settings.NoticesScreen
 import dev.anmitali.nfcutils.ui.settings.SettingsScreen
 import dev.anmitali.nfcutils.ui.tools.ToolsScreen
@@ -56,13 +60,11 @@ fun AppNavHost(
                 onClose = { navController.popBackStack() },
             )
         }
-        composable(Routes.SETTINGS) {
-            SettingsScreen(
-                container,
-                snackbarHostState,
-                onOpenAbout = { navController.navigate(Routes.ABOUT) },
-                onOpenNotices = { navController.navigate(Routes.NOTICES) },
-            )
+        composable(Routes.SETTINGS) { SettingsScreen(onOpen = { navController.navigate(it) }) }
+        composable(Routes.APPEARANCE) { AppearanceScreen(container) }
+        composable(Routes.DATA) { DataScreen(container, snackbarHostState) }
+        composable(Routes.LANGUAGE) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) LanguageScreen()
         }
         composable(Routes.ABOUT) { AboutScreen() }
         composable(Routes.NOTICES) { NoticesScreen() }
