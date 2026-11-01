@@ -5,6 +5,7 @@ package dev.anmitali.nfcutils.ui.history
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.OutlinedButton
@@ -31,6 +32,7 @@ fun HistoryDetailScreen(container: AppContainer, id: Long, onClose: () -> Unit, 
         factory = HistoryDetailViewModel.factory(container, id),
     )
     val details by viewModel.details.collectAsStateWithLifecycle()
+    val pinned by viewModel.pinned.collectAsStateWithLifecycle()
     var deleted by rememberSaveable { mutableStateOf(false) }
 
     LaunchedEffect(deleted) {
@@ -44,14 +46,19 @@ fun HistoryDetailScreen(container: AppContainer, id: Long, onClose: () -> Unit, 
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         tagDetailsItems(current)
-        item(key = "delete") {
-            OutlinedButton(
-                onClick = {
-                    viewModel.delete()
-                    deleted = true
-                },
-            ) {
-                Text(stringResource(R.string.history_delete_entry))
+        item(key = "actions") {
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                OutlinedButton(onClick = viewModel::togglePin) {
+                    Text(stringResource(if (pinned) R.string.history_unpin else R.string.history_pin))
+                }
+                OutlinedButton(
+                    onClick = {
+                        viewModel.delete()
+                        deleted = true
+                    },
+                ) {
+                    Text(stringResource(R.string.history_delete_entry))
+                }
             }
         }
     }

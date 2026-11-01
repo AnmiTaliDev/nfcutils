@@ -22,6 +22,14 @@ class HistoryDetailViewModel(private val historyDao: HistoryDao, private val id:
         .map { it?.toTagDetails() }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
 
+    val pinned: StateFlow<Boolean> = historyDao.observeDetail(id)
+        .map { it?.entry?.pinned ?: false }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), false)
+
+    fun togglePin() {
+        viewModelScope.launch { historyDao.setPinned(id, !pinned.value) }
+    }
+
     fun delete() {
         viewModelScope.launch { historyDao.delete(id) }
     }
