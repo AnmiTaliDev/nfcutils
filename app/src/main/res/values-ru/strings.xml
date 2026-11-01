@@ -223,6 +223,12 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="settings_dynamic_color">Динамические цвета</string>
     <string name="settings_language">Язык</string>
     <string name="settings_language_system">Как в системе</string>
+    <string name="screen_appearance">Оформление</string>
+    <string name="settings_appearance_summary">Тема и динамические цвета</string>
+    <string name="settings_language_summary">Язык приложения</string>
+    <string name="settings_data_summary">Экспорт, импорт и очистка истории</string>
+    <string name="settings_notices_summary">Компоненты с открытым кодом и лицензии</string>
+    <string name="settings_about_summary">Версия, лицензия, сайт</string>
     <string name="settings_dynamic_color_body">Использовать цвета обоев. Если выключено, применяется фиксированная цветовая схема.</string>
     <string name="settings_about">О приложении</string>
     <string name="settings_notices">Лицензии</string>
