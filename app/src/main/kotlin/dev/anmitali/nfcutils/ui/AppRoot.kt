@@ -4,6 +4,7 @@
 package dev.anmitali.nfcutils.ui
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.anmitali.nfcutils.AppContainer
@@ -11,6 +12,7 @@ import dev.anmitali.nfcutils.settings.AppSettings
 import dev.anmitali.nfcutils.theme.NfcUtilsTheme
 import dev.anmitali.nfcutils.ui.navigation.AppScaffold
 import dev.anmitali.nfcutils.ui.onboarding.OnboardingScreen
+import dev.anmitali.nfcutils.ui.update.UpdateDialog
 
 @Composable
 fun AppRoot(container: AppContainer) {
@@ -20,7 +22,11 @@ fun AppRoot(container: AppContainer) {
         when (onboardingDone) {
             null -> Unit
             false -> OnboardingScreen(container)
-            true -> AppScaffold(container)
+            true -> {
+                AppScaffold(container)
+                UpdateDialog(container.updateManager)
+                LaunchedEffect(Unit) { container.updateManager.checkIfDue() }
+            }
         }
     }
 }
