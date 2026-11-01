@@ -49,6 +49,14 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="unsupported_title">Тегке қолдау көрсетілмейді</string>
     <string name="unsupported_body">Бұл NDEF деректері жоқ MIFARE Classic тегі. MIFARE Classic қолдау көрсетілмейді.</string>
     <string name="info_tag_type">Тег түрі</string>
+    <string name="info_device_kind">Ықтимал құрылғы</string>
+    <string name="device_kind_tag">NFC белгісі (жапсырма, затбелгі, брелок)</string>
+    <string name="device_kind_access_card">Рұқсат немесе көлік картасы</string>
+    <string name="device_kind_smart_card">Смарт-карта (банк картасы, жеке куәлік немесе карта эмуляциясындағы телефон)</string>
+    <string name="device_kind_felica_card">FeliCa картасы (көлік немесе төлем)</string>
+    <string name="device_kind_iso15693_tag">ISO 15693 белгісі (кітапхана, өнеркәсіп, жеке куәлік)</string>
+    <string name="device_kind_barcode_tag">NFC штрих-код белгісі</string>
+    <string name="device_kind_unknown">Анықталмады</string>
     <string name="info_uid">UID</string>
     <string name="info_technologies">Технологиялар</string>
     <string name="info_atqa">ATQA</string>
