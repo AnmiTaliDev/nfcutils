@@ -30,6 +30,10 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="action_write_to_tag">Write to tag</string>
     <string name="action_share">Share</string>
     <string name="copied_to_clipboard">Copied</string>
+    <string name="action_open">Open</string>
+    <string name="action_open_store">Open in store</string>
+    <string name="action_copy_password">Copy password</string>
+    <string name="no_app_to_open">No app can open this</string>
     <string name="share_chooser_title">Share scan</string>
     <string name="share_as_title">Share as</string>
     <string name="share_as_text">Text</string>

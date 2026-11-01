@@ -83,7 +83,7 @@ private fun ShareImageContent(details: TagDetails) {
         Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             DeviceKindCard(details.tagType)
             TagInfoCard(details)
-            for (record in details.records) RecordCard(record)
+            for (record in details.records) RecordCard(record, showAction = false)
         }
     }
 }

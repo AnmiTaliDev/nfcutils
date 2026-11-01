@@ -4,6 +4,7 @@
 package dev.anmitali.nfcutils.ui.taginfo
 
 import androidx.annotation.StringRes
+import android.net.Uri
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,19 +16,24 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import dev.anmitali.nfcutils.R
+import dev.anmitali.nfcutils.ndef.RecordAction
 import dev.anmitali.nfcutils.ndef.RecordInfo
+import dev.anmitali.nfcutils.ndef.recordAction
 import dev.anmitali.nfcutils.nfc.TagDetails
 import dev.anmitali.nfcutils.nfc.TagPage
 import dev.anmitali.nfcutils.ui.common.labelRes
+import dev.anmitali.nfcutils.ui.common.openUri
 import dev.anmitali.nfcutils.ui.common.rememberCopyAction
 import java.text.DateFormat
 import java.util.Date
@@ -143,8 +149,10 @@ private fun UnsupportedCard() {
 }
 
 @Composable
-internal fun RecordCard(record: RecordInfo) {
+internal fun RecordCard(record: RecordInfo, showAction: Boolean = true) {
     val copy = rememberCopyAction()
+    val context = LocalContext.current
+    val action = if (showAction) remember(record) { recordAction(record) } else null
     Card(modifier = Modifier.fillMaxWidth(), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer)) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
@@ -178,6 +186,29 @@ internal fun RecordCard(record: RecordInfo) {
                 fontFamily = FontFamily.Monospace,
                 modifier = Modifier.clickable(enabled = record.payloadHex.isNotEmpty()) { copy(record.payloadHex) },
             )
+            if (action != null) {
+                FilledTonalButton(
+                    onClick = {
+                        when (action) {
+                            is RecordAction.OpenUri -> openUri(context, action.uri)
+                            is RecordAction.OpenStore ->
+                                openUri(context, "market://details?id=" + Uri.encode(action.packageName))
+                            is RecordAction.CopyWifiPassword -> copy(action.password)
+                        }
+                    },
+                    modifier = Modifier.padding(top = 12.dp),
+                ) {
+                    Text(
+                        stringResource(
+                            when (action) {
+                                is RecordAction.OpenUri -> R.string.action_open
+                                is RecordAction.OpenStore -> R.string.action_open_store
+                                is RecordAction.CopyWifiPassword -> R.string.action_copy_password
+                            },
+                        ),
+                    )
+                }
+            }
         }
     }
 }
