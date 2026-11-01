@@ -50,6 +50,21 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="nfc_disabled_title">NFC is turned off</string>
     <string name="nfc_disabled_body">Turn on NFC to read and write tags.</string>
     <string name="nfc_open_settings">Open NFC settings</string>
+    <string name="onboarding_step">%1$d of %2$d</string>
+    <string name="onboarding_skip">Skip</string>
+    <string name="onboarding_next">Next</string>
+    <string name="onboarding_finish">Get started</string>
+    <string name="onboarding_welcome_title">NFC Utils</string>
+    <string name="onboarding_welcome_body">Read, write, erase and lock NFC tags. Compose NDEF messages and keep sets of records for reuse.</string>
+    <string name="onboarding_nfc_title">NFC</string>
+    <string name="onboarding_nfc_enabled">NFC is on. The app is ready to scan tags.</string>
+    <string name="onboarding_nfc_disabled">NFC is off. Turn it on in the system settings to scan and write tags.</string>
+    <string name="onboarding_nfc_unavailable">This device has no NFC. You can compose and save records, but not read or write tags.</string>
+    <string name="onboarding_no_permissions">The app asks for no runtime permissions.</string>
+    <string name="onboarding_support_title">Support the project</string>
+    <string name="onboarding_support_body">NFC Utils is free and open source. A star on GitHub helps other people find it.</string>
+    <string name="onboarding_open_repository">Open GitHub</string>
+    <string name="onboarding_repository_url" translatable="false">https://github.com/AnmiTaliDev/nfcutils</string>
 
     <string name="scan_hint_title">Ready to scan</string>
     <string name="scan_hint_body">Hold a tag against the back of the device.</string>
