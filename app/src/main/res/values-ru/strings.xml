@@ -49,6 +49,14 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="unsupported_title">Метка не поддерживается</string>
     <string name="unsupported_body">Это метка MIFARE Classic без данных NDEF. MIFARE Classic не поддерживается.</string>
     <string name="info_tag_type">Тип метки</string>
+    <string name="info_device_kind">Вероятное устройство</string>
+    <string name="device_kind_tag">NFC-метка (наклейка, бирка, брелок)</string>
+    <string name="device_kind_access_card">Карта доступа или проездной</string>
+    <string name="device_kind_smart_card">Смарт-карта (банковская карта, удостоверение или телефон в режиме эмуляции карты)</string>
+    <string name="device_kind_felica_card">Карта FeliCa (транспорт или оплата)</string>
+    <string name="device_kind_iso15693_tag">Метка ISO 15693 (библиотека, промышленность, удостоверение)</string>
+    <string name="device_kind_barcode_tag">NFC-метка со штрихкодом</string>
+    <string name="device_kind_unknown">Не определено</string>
     <string name="info_uid">UID</string>
     <string name="info_technologies">Технологии</string>
     <string name="info_atqa">ATQA</string>
