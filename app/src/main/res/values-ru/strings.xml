@@ -207,6 +207,8 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="history_clear_confirm">Очистить</string>
     <string name="history_delete_entry">Удалить эту запись истории</string>
     <string name="history_search">Поиск по UID или содержимому</string>
+    <string name="history_pin">Закрепить</string>
+    <string name="history_unpin">Открепить</string>
     <string name="history_no_matches">Нет сканов, подходящих под поиск.</string>
     <string name="saved_new">Новый набор</string>
     <string name="saved_empty">Сохранённых наборов пока нет.</string>
