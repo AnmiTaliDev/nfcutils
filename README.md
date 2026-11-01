@@ -21,7 +21,8 @@ Libraries (versions are pinned in `gradle/libs.versions.toml`):
 - AndroidX Lifecycle, Activity and Core KTX
 - Room
 - DataStore Preferences
-- JUnit 4 (tests only)
+- JUnit 4 (unit tests only)
+- AndroidX Test and Room testing (instrumented tests only)
 
 ## Build
 
@@ -37,6 +38,12 @@ Unit tests run on the JVM and do not need a device or a tag:
 
 ```
 ./gradlew testDebugUnitTest
+```
+
+Database migration tests are instrumented tests. They need an emulator or a connected device, but no tag:
+
+```
+./gradlew connectedDebugAndroidTest
 ```
 
 ## Screenshots

@@ -14,9 +14,19 @@ Requirements: JDK 17 or newer and an Android SDK with platform 37 and matching b
 ./gradlew testDebugUnitTest
 ```
 
-The tests are JVM unit tests. They cover NDEF building and parsing, hex formatting, message size calculation and history summaries. They need no device and no NFC tag. Changes to NDEF code should come with tests.
+The tests are JVM unit tests. They cover NDEF building and parsing, hex formatting, message size calculation, tag type classification, history filtering and data export and import. They need no device and no NFC tag. Changes to NDEF code should come with tests.
+
+Room migrations are checked by instrumented tests in `app/src/androidTest`. They need an emulator or a connected device and no tag:
+
+```
+./gradlew connectedDebugAndroidTest
+```
 
 Writing, locking and tag reading paths use `android.nfc` and have to be checked by hand on a device with real tags. Locking a tag is irreversible, so use a tag you can spare.
+
+## Change the database
+
+When an entity in `app/src/main/kotlin/dev/anmitali/nfcutils/data` changes, raise the version in `NfcUtilsDatabase`, add a migration in `Migrations.kt` and register it in `NfcUtilsDatabase.create`. Room writes the new schema file to `app/schemas`. Commit that file and add a case to `MigrationTest`.
 
 ## Submit changes
 
