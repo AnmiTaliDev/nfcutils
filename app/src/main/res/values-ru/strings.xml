@@ -221,6 +221,8 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="theme_light">Светлая</string>
     <string name="theme_dark">Тёмная</string>
     <string name="settings_dynamic_color">Динамические цвета</string>
+    <string name="settings_language">Язык</string>
+    <string name="settings_language_system">Как в системе</string>
     <string name="settings_dynamic_color_body">Использовать цвета обоев. Если выключено, применяется фиксированная цветовая схема.</string>
     <string name="settings_about">О приложении</string>
     <string name="settings_notices">Лицензии</string>
