@@ -32,6 +32,10 @@ class HistoryViewModel(private val historyDao: HistoryDao) : ViewModel() {
         mutableQuery.value = value
     }
 
+    fun togglePin(entry: HistoryEntryEntity) {
+        viewModelScope.launch { historyDao.setPinned(entry.id, !entry.pinned) }
+    }
+
     fun clearAll() {
         viewModelScope.launch { historyDao.deleteAll() }
     }
