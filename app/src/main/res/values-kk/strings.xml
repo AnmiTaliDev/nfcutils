@@ -176,6 +176,10 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="operation_failed_title">Әрекет орындалмады</string>
     <string name="failure_tag_lost">Тегті тым ерте алып тастадыңыз. Қозғамай ұстап, қайталап көріңіз.</string>
     <string name="failure_not_writable">Тегке жазу мүмкін емес. Ол тек оқуға арналған немесе бұғатталған болуы мүмкін.</string>
+    <string name="failure_not_empty">Белгіде деректер бар. Жазу оларды ауыстырады.</string>
+    <string name="overwrite_title">Белгі бос емес</string>
+    <string name="overwrite_more">және тағы %1$d</string>
+    <string name="action_overwrite">Қайта жазу</string>
     <string name="failure_too_large">Хабарламаға %1$d Б қажет, ал тегте %2$d Б сыяды.</string>
     <string name="failure_unsupported_tag">Бұл тег NDEF қолдамайды.</string>
     <string name="failure_not_formatted">Тег NDEF пішімінде емес, сондықтан тазалайтын ештеңе жоқ.</string>
