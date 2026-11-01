@@ -26,6 +26,7 @@ import dev.anmitali.nfcutils.R
 import dev.anmitali.nfcutils.ndef.RecordInfo
 import dev.anmitali.nfcutils.nfc.TagDetails
 import dev.anmitali.nfcutils.nfc.TagPage
+import dev.anmitali.nfcutils.nfc.deviceKind
 import dev.anmitali.nfcutils.ui.common.labelRes
 import java.text.DateFormat
 import java.util.Date
@@ -100,6 +101,7 @@ internal fun TagInfoCard(details: TagDetails) {
     }
     Card(modifier = Modifier.fillMaxWidth(), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainerHigh)) {
         Column(modifier = Modifier.padding(16.dp)) {
+            InfoRow(R.string.info_device_kind, stringResource(details.tagType.deviceKind().labelRes()))
             InfoRow(R.string.info_tag_type, stringResource(details.tagType.labelRes()))
             InfoRow(R.string.info_uid, details.uid)
             InfoRow(R.string.info_technologies, details.technologies.joinToString(", "))

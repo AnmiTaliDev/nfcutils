@@ -6,6 +6,7 @@ package dev.anmitali.nfcutils.ui.taginfo
 import android.content.Context
 import dev.anmitali.nfcutils.R
 import dev.anmitali.nfcutils.nfc.TagDetails
+import dev.anmitali.nfcutils.nfc.deviceKind
 import dev.anmitali.nfcutils.ui.common.labelRes
 
 fun buildShareText(context: Context, details: TagDetails): String {
@@ -13,6 +14,7 @@ fun buildShareText(context: Context, details: TagDetails): String {
     fun line(label: Int, value: String) = context.getString(label) + ": " + value
     fun bytes(value: Int?) = if (value == null) notAvailable else context.getString(R.string.value_bytes, value)
     val lines = mutableListOf(
+        line(R.string.info_device_kind, context.getString(details.tagType.deviceKind().labelRes())),
         line(R.string.info_tag_type, context.getString(details.tagType.labelRes())),
         line(R.string.info_uid, details.uid),
         line(R.string.info_technologies, details.technologies.joinToString(", ")),

@@ -57,6 +57,14 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="unsupported_body">This is a MIFARE Classic tag without NDEF data. MIFARE Classic is not supported.</string>
 
     <string name="info_tag_type">Tag type</string>
+    <string name="info_device_kind">Likely device</string>
+    <string name="device_kind_tag">NFC tag (sticker, label, keychain)</string>
+    <string name="device_kind_access_card">Access or transit card</string>
+    <string name="device_kind_smart_card">Smart card (bank card, ID, or phone in card emulation mode)</string>
+    <string name="device_kind_felica_card">FeliCa card (transit or payment)</string>
+    <string name="device_kind_iso15693_tag">ISO 15693 tag (library, industrial, ID)</string>
+    <string name="device_kind_barcode_tag">NFC barcode tag</string>
+    <string name="device_kind_unknown">Not identified</string>
     <string name="info_uid">UID</string>
     <string name="info_technologies">Technologies</string>
     <string name="info_atqa">ATQA</string>

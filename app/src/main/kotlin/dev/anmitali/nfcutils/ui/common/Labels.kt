@@ -8,6 +8,7 @@ import dev.anmitali.nfcutils.R
 import dev.anmitali.nfcutils.ndef.DraftKind
 import dev.anmitali.nfcutils.ndef.FieldError
 import dev.anmitali.nfcutils.ndef.ParsedKind
+import dev.anmitali.nfcutils.nfc.DeviceKind
 import dev.anmitali.nfcutils.nfc.TagType
 
 @StringRes
@@ -31,6 +32,17 @@ fun TagType.labelRes(): Int = when (this) {
     TagType.Iso14443TypeA -> R.string.tag_type_iso14443_a
     TagType.Barcode -> R.string.tag_type_barcode
     TagType.Unknown -> R.string.tag_type_unknown
+}
+
+@StringRes
+fun DeviceKind.labelRes(): Int = when (this) {
+    DeviceKind.NfcTag -> R.string.device_kind_tag
+    DeviceKind.AccessCard -> R.string.device_kind_access_card
+    DeviceKind.SmartCard -> R.string.device_kind_smart_card
+    DeviceKind.FeliCaCard -> R.string.device_kind_felica_card
+    DeviceKind.Iso15693Tag -> R.string.device_kind_iso15693_tag
+    DeviceKind.BarcodeTag -> R.string.device_kind_barcode_tag
+    DeviceKind.Unknown -> R.string.device_kind_unknown
 }
 
 @StringRes
