@@ -8,6 +8,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
@@ -18,6 +19,7 @@ private val Context.settingsDataStore: DataStore<Preferences> by preferencesData
 private val ThemeModeKey = stringPreferencesKey("theme_mode")
 private val DynamicColorKey = booleanPreferencesKey("dynamic_color")
 private val OnboardingDoneKey = booleanPreferencesKey("onboarding_done")
+private val LastUpdateCheckKey = longPreferencesKey("last_update_check")
 
 class SettingsStore(context: Context) {
     private val dataStore = context.applicationContext.settingsDataStore
@@ -33,6 +35,12 @@ class SettingsStore(context: Context) {
 
     suspend fun setOnboardingDone() {
         dataStore.edit { it[OnboardingDoneKey] = true }
+    }
+
+    val lastUpdateCheck: Flow<Long> = dataStore.data.map { it[LastUpdateCheckKey] ?: 0L }
+
+    suspend fun setLastUpdateCheck(time: Long) {
+        dataStore.edit { it[LastUpdateCheckKey] = time }
     }
 
     suspend fun setThemeMode(mode: ThemeMode) {
