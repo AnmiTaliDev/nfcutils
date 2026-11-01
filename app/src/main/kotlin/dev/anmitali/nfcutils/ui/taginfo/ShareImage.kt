@@ -81,6 +81,7 @@ fun shareImage(context: Context, bitmap: Bitmap, chooserTitle: String) {
 private fun ShareImageContent(details: TagDetails) {
     Surface(color = MaterialTheme.colorScheme.surface) {
         Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            DeviceKindCard(details.tagType)
             TagInfoCard(details)
             for (record in details.records) RecordCard(record)
         }

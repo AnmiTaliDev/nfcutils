@@ -3,6 +3,7 @@
 
 package dev.anmitali.nfcutils.ui.common
 
+import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import dev.anmitali.nfcutils.R
 import dev.anmitali.nfcutils.ndef.DraftKind
@@ -43,6 +44,17 @@ fun DeviceKind.labelRes(): Int = when (this) {
     DeviceKind.Iso15693Tag -> R.string.device_kind_iso15693_tag
     DeviceKind.BarcodeTag -> R.string.device_kind_barcode_tag
     DeviceKind.Unknown -> R.string.device_kind_unknown
+}
+
+@DrawableRes
+fun DeviceKind.iconRes(): Int = when (this) {
+    DeviceKind.NfcTag -> R.drawable.ic_device_tag
+    DeviceKind.AccessCard -> R.drawable.ic_device_access
+    DeviceKind.SmartCard -> R.drawable.ic_device_smart
+    DeviceKind.FeliCaCard -> R.drawable.ic_device_felica
+    DeviceKind.Iso15693Tag -> R.drawable.ic_device_iso15693
+    DeviceKind.BarcodeTag -> R.drawable.ic_device_barcode
+    DeviceKind.Unknown -> R.drawable.ic_device_unknown
 }
 
 @StringRes
