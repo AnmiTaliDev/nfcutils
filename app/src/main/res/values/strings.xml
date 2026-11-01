@@ -193,6 +193,10 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
 
     <string name="failure_tag_lost">The tag was moved away too early. Hold it still and try again.</string>
     <string name="failure_not_writable">The tag is not writable. It may be read-only or locked.</string>
+    <string name="failure_not_empty">The tag already contains data. Writing will replace it.</string>
+    <string name="overwrite_title">Tag is not empty</string>
+    <string name="overwrite_more">and %1$d more</string>
+    <string name="action_overwrite">Overwrite</string>
     <string name="failure_too_large">The message needs %1$d B, but the tag holds %2$d B.</string>
     <string name="failure_unsupported_tag">This tag does not support NDEF.</string>
     <string name="failure_not_formatted">The tag is not NDEF-formatted, so there is nothing to erase.</string>

@@ -12,6 +12,7 @@ import dev.anmitali.nfcutils.nfc.TagFailure
 fun TagFailure.message(): String = when (this) {
     TagFailure.TagLost -> stringResource(R.string.failure_tag_lost)
     TagFailure.NotWritable -> stringResource(R.string.failure_not_writable)
+    is TagFailure.NotEmpty -> stringResource(R.string.failure_not_empty)
     is TagFailure.TooLarge -> stringResource(R.string.failure_too_large, needed, capacity)
     TagFailure.UnsupportedTag -> stringResource(R.string.failure_unsupported_tag)
     TagFailure.NotFormatted -> stringResource(R.string.failure_not_formatted)

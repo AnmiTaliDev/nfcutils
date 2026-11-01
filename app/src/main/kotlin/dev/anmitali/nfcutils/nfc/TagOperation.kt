@@ -4,9 +4,10 @@
 package dev.anmitali.nfcutils.nfc
 
 import dev.anmitali.nfcutils.ndef.NdefRecordData
+import dev.anmitali.nfcutils.ndef.RecordInfo
 
 sealed interface TagOperation {
-    class Write(val records: List<NdefRecordData>) : TagOperation
+    class Write(val records: List<NdefRecordData>, val overwrite: Boolean = false) : TagOperation
 
     data object Erase : TagOperation
 
@@ -19,6 +20,8 @@ sealed interface TagFailure {
     data object TagLost : TagFailure
 
     data object NotWritable : TagFailure
+
+    class NotEmpty(val existing: List<RecordInfo>) : TagFailure
 
     class TooLarge(val needed: Int, val capacity: Int) : TagFailure
 

@@ -12,6 +12,8 @@ import android.nfc.tech.NdefFormatable
 import dev.anmitali.nfcutils.ndef.EmptyRecord
 import dev.anmitali.nfcutils.ndef.NdefCodec
 import dev.anmitali.nfcutils.ndef.NdefRecordData
+import dev.anmitali.nfcutils.ndef.Tnf
+import dev.anmitali.nfcutils.ndef.describeRecord
 import java.io.IOException
 
 class TagWriter {
@@ -23,7 +25,7 @@ class TagWriter {
 
     fun run(operation: TagOperation, tag: Tag): Result = try {
         when (operation) {
-            is TagOperation.Write -> write(tag, operation.records)
+            is TagOperation.Write -> write(tag, operation.records, operation.overwrite)
             TagOperation.Erase -> erase(tag)
             TagOperation.Format -> format(tag)
             TagOperation.Lock -> lock(tag)
@@ -36,7 +38,7 @@ class TagWriter {
         Result.Failed(TagFailure.IoError)
     }
 
-    private fun write(tag: Tag, records: List<NdefRecordData>): Result {
+    private fun write(tag: Tag, records: List<NdefRecordData>, overwrite: Boolean): Result {
         val message = records.toNdefMessage()
         val ndef = Ndef.get(tag)
         if (ndef != null) {
@@ -46,6 +48,8 @@ class TagWriter {
                 when {
                     !it.isWritable -> Result.Failed(TagFailure.NotWritable)
                     needed > it.maxSize -> Result.Failed(TagFailure.TooLarge(needed, it.maxSize))
+                    !overwrite && existingContent(it).isNotEmpty() ->
+                        Result.Failed(TagFailure.NotEmpty(existingContent(it).map { record -> describeRecord(record) }))
                     else -> {
                         it.writeNdefMessage(message)
                         Result.Success
@@ -54,6 +58,15 @@ class TagWriter {
             }
         }
         return formatWith(tag, message)
+    }
+
+    private fun existingContent(ndef: Ndef): List<NdefRecordData> {
+        val message = try {
+            ndef.ndefMessage
+        } catch (e: FormatException) {
+            null
+        }
+        return message?.records.orEmpty().map { it.toData() }.filter { it.tnf != Tnf.EMPTY }
     }
 
     private fun erase(tag: Tag): Result {
