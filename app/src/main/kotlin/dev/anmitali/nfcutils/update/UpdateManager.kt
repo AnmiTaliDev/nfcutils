@@ -70,7 +70,7 @@ class UpdateManager(
     }
 
     fun dismiss() {
-        if (!isBusy()) mutableState.value = UpdateState.Idle
+        if (mutableState.value !is UpdateState.Downloading) mutableState.value = UpdateState.Idle
     }
 
     private fun isBusy() = mutableState.value.let {

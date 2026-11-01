@@ -12,7 +12,6 @@ private const val SHA256_PREFIX = "sha256:"
 
 class ReleaseInfo(
     val tag: String,
-    val notes: String,
     val pageUrl: String,
     val apkUrl: String,
     val apkSize: Long,
@@ -29,7 +28,6 @@ fun parseRelease(json: String): ReleaseInfo? {
             if (!asset.getString("name").endsWith(".apk") || !url.startsWith(DOWNLOAD_PREFIX)) continue
             return ReleaseInfo(
                 tag = root.getString("tag_name"),
-                notes = root.optString("body"),
                 pageUrl = root.getString("html_url"),
                 apkUrl = url,
                 apkSize = asset.getLong("size"),
