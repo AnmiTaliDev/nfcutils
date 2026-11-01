@@ -17,6 +17,7 @@ private val Context.settingsDataStore: DataStore<Preferences> by preferencesData
 
 private val ThemeModeKey = stringPreferencesKey("theme_mode")
 private val DynamicColorKey = booleanPreferencesKey("dynamic_color")
+private val OnboardingDoneKey = booleanPreferencesKey("onboarding_done")
 
 class SettingsStore(context: Context) {
     private val dataStore = context.applicationContext.settingsDataStore
@@ -26,6 +27,12 @@ class SettingsStore(context: Context) {
             themeMode = ThemeMode.entries.firstOrNull { it.name == preferences[ThemeModeKey] } ?: ThemeMode.System,
             dynamicColor = preferences[DynamicColorKey] ?: true,
         )
+    }
+
+    val onboardingDone: Flow<Boolean> = dataStore.data.map { it[OnboardingDoneKey] ?: false }
+
+    suspend fun setOnboardingDone() {
+        dataStore.edit { it[OnboardingDoneKey] = true }
     }
 
     suspend fun setThemeMode(mode: ThemeMode) {
