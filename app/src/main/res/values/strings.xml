@@ -30,6 +30,9 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="action_write_to_tag">Write to tag</string>
     <string name="action_share">Share</string>
     <string name="share_chooser_title">Share scan</string>
+    <string name="share_as_title">Share as</string>
+    <string name="share_as_text">Text</string>
+    <string name="share_as_image">Image</string>
     <string name="action_move_up">Up</string>
     <string name="action_move_down">Down</string>
     <string name="action_remove_record">Remove record</string>

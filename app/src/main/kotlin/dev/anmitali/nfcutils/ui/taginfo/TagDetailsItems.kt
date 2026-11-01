@@ -3,7 +3,6 @@
 
 package dev.anmitali.nfcutils.ui.taginfo
 
-import android.content.Intent
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,12 +15,10 @@ import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
@@ -54,22 +51,6 @@ fun LazyListScope.tagDetailsItems(details: TagDetails) {
     if (details.pages.isNotEmpty()) {
         item(key = "pages-title") { SectionTitle(R.string.section_pages) }
         item(key = "pages") { PagesCard(details.pages) }
-    }
-}
-
-@Composable
-private fun ShareButton(details: TagDetails) {
-    val context = LocalContext.current
-    val chooserTitle = stringResource(R.string.share_chooser_title)
-    OutlinedButton(
-        onClick = {
-            val send = Intent(Intent.ACTION_SEND)
-                .setType("text/plain")
-                .putExtra(Intent.EXTRA_TEXT, buildShareText(context, details))
-            context.startActivity(Intent.createChooser(send, chooserTitle))
-        },
-    ) {
-        Text(stringResource(R.string.action_share))
     }
 }
 
@@ -112,7 +93,7 @@ private fun bytes(value: Int?): String =
     if (value == null) stringResource(R.string.value_not_available) else stringResource(R.string.value_bytes, value)
 
 @Composable
-private fun TagInfoCard(details: TagDetails) {
+internal fun TagInfoCard(details: TagDetails) {
     val notAvailable = stringResource(R.string.value_not_available)
     val scanned = remember(details.scannedAt) {
         DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM).format(Date(details.scannedAt))
@@ -155,7 +136,7 @@ private fun UnsupportedCard() {
 }
 
 @Composable
-private fun RecordCard(record: RecordInfo) {
+internal fun RecordCard(record: RecordInfo) {
     Card(modifier = Modifier.fillMaxWidth(), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer)) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
