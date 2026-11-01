@@ -199,6 +199,12 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="lock_confirm_title">Тегті тек оқуға арналған етесіз бе?</string>
     <string name="lock_confirm_body">Бұл қайтымсыз әрекет. Бұғаттағаннан кейін тегке ештеңе жазуға, оны тазалауға немесе пішімдеуге болмайды, бұл қолданбада да, басқасында да.</string>
     <string name="lock_confirm_action">Бұғаттау</string>
+    <string name="erase_confirm_title">Белгіні өшіру керек пе?</string>
+    <string name="erase_confirm_body">Келесі жақындатылған белгінің NDEF мазмұны жойылады. Мұны қайтару мүмкін емес.</string>
+    <string name="erase_confirm_action">Өшіру</string>
+    <string name="format_confirm_title">Белгіні пішімдеу керек пе?</string>
+    <string name="format_confirm_body">Келесі жақындатылған белгі NDEF ретінде пішімделеді. Ондағы деректер жоғалуы мүмкін.</string>
+    <string name="format_confirm_action">Пішімдеу</string>
     <string name="history_empty">Сканерлеулер әлі жоқ. Оқылған тегтер осында автоматты түрде сақталады.</string>
     <string name="history_no_records">Жазба жоқ</string>
     <string name="history_clear">Тарихты тазалау</string>
