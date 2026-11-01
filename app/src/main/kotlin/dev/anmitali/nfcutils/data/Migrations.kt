@@ -12,3 +12,9 @@ val Migration1To2 = object : Migration(1, 2) {
         db.execSQL("ALTER TABLE history_entry ADD COLUMN signature TEXT")
     }
 }
+
+val Migration2To3 = object : Migration(2, 3) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+        db.execSQL("ALTER TABLE history_entry ADD COLUMN pinned INTEGER NOT NULL DEFAULT 0")
+    }
+}

@@ -3,6 +3,7 @@
 
 package dev.anmitali.nfcutils.data
 
+import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.ForeignKey
@@ -29,6 +30,7 @@ class HistoryEntryEntity(
     val summary: String,
     val nfcCounter: Int?,
     val signature: String?,
+    @ColumnInfo(defaultValue = "0") val pinned: Boolean = false,
 )
 
 @Entity(

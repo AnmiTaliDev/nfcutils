@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 abstract class HistoryDao {
-    @Query("SELECT * FROM history_entry ORDER BY scannedAt DESC, id DESC")
+    @Query("SELECT * FROM history_entry ORDER BY pinned DESC, scannedAt DESC, id DESC")
     abstract fun observeEntries(): Flow<List<HistoryEntryEntity>>
 
     @Transaction
@@ -38,6 +38,9 @@ abstract class HistoryDao {
 
     @Insert
     protected abstract suspend fun insertPages(pages: List<HistoryPageEntity>)
+
+    @Query("UPDATE history_entry SET pinned = :pinned WHERE id = :id")
+    abstract suspend fun setPinned(id: Long, pinned: Boolean)
 
     @Query("DELETE FROM history_entry WHERE id = :id")
     abstract suspend fun delete(id: Long)

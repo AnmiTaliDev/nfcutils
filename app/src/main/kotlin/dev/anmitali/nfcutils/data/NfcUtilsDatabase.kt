@@ -18,7 +18,7 @@ import androidx.room.RoomDatabase
         SavedRecordEntity::class,
         SavedFieldEntity::class,
     ],
-    version = 2,
+    version = 3,
     exportSchema = true,
 )
 abstract class NfcUtilsDatabase : RoomDatabase() {
@@ -29,7 +29,7 @@ abstract class NfcUtilsDatabase : RoomDatabase() {
     companion object {
         fun create(context: Context): NfcUtilsDatabase =
             Room.databaseBuilder(context, NfcUtilsDatabase::class.java, "nfcutils.db")
-                .addMigrations(Migration1To2)
+                .addMigrations(Migration1To2, Migration2To3)
                 .build()
     }
 }
