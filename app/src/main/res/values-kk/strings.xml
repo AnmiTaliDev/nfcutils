@@ -223,6 +223,12 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="settings_dynamic_color">Динамикалық түстер</string>
     <string name="settings_language">Тіл</string>
     <string name="settings_language_system">Жүйе бойынша</string>
+    <string name="screen_appearance">Көрініс</string>
+    <string name="settings_appearance_summary">Тақырып және динамикалық түстер</string>
+    <string name="settings_language_summary">Қолданба тілі</string>
+    <string name="settings_data_summary">Экспорт, импорт және тарихты тазалау</string>
+    <string name="settings_notices_summary">Ашық бастапқы код компоненттері және лицензиялар</string>
+    <string name="settings_about_summary">Нұсқа, лицензия, сайт</string>
     <string name="settings_dynamic_color_body">Тұсқағаз түстерін пайдалану. Өшірулі болса, бекітілген түс схемасы қолданылады.</string>
     <string name="settings_about">Қолданба туралы</string>
     <string name="settings_notices">Лицензиялар</string>
