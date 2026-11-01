@@ -5,6 +5,9 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
 -->
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name" translatable="false">NFC Utils</string>
+    <string name="language_english" translatable="false">English</string>
+    <string name="language_russian" translatable="false">Русский</string>
+    <string name="language_kazakh" translatable="false">Қазақша</string>
 
     <string name="tab_scan">Scan</string>
     <string name="tab_write">Write</string>
@@ -242,6 +245,8 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="theme_light">Light</string>
     <string name="theme_dark">Dark</string>
     <string name="settings_dynamic_color">Dynamic color</string>
+    <string name="settings_language">Language</string>
+    <string name="settings_language_system">System default</string>
     <string name="settings_dynamic_color_body">Use colors from the wallpaper. When off, a fixed color scheme is used.</string>
     <string name="settings_about">About</string>
     <string name="settings_notices">Notices</string>

@@ -3,6 +3,7 @@
 
 package dev.anmitali.nfcutils.ui.settings
 
+import android.os.Build
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.StringRes
@@ -120,6 +121,7 @@ fun SettingsScreen(
             }
             Switch(checked = settings.dynamicColor, onCheckedChange = null)
         }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) LanguageSetting()
         Text(
             text = stringResource(R.string.settings_data_title),
             style = MaterialTheme.typography.titleMedium,
