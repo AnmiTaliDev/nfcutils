@@ -199,6 +199,12 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="lock_confirm_title">Сделать метку только для чтения?</string>
     <string name="lock_confirm_body">Это необратимо. После блокировки на метку нельзя будет ничего записать, её нельзя будет стереть или отформатировать ни в этом приложении, ни в другом.</string>
     <string name="lock_confirm_action">Заблокировать</string>
+    <string name="erase_confirm_title">Стереть метку?</string>
+    <string name="erase_confirm_body">Содержимое NDEF следующей приложенной метки будет удалено. Это нельзя отменить.</string>
+    <string name="erase_confirm_action">Стереть</string>
+    <string name="format_confirm_title">Форматировать метку?</string>
+    <string name="format_confirm_body">Следующая приложенная метка будет отформатирована как NDEF. Данные на ней могут быть потеряны.</string>
+    <string name="format_confirm_action">Форматировать</string>
     <string name="history_empty">Сканов пока нет. Прочитанные метки сохраняются здесь автоматически.</string>
     <string name="history_no_records">Нет записей</string>
     <string name="history_clear">Очистить историю</string>
