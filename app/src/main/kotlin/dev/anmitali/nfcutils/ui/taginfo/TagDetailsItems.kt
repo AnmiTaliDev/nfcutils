@@ -4,6 +4,7 @@
 package dev.anmitali.nfcutils.ui.taginfo
 
 import androidx.annotation.StringRes
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,6 +28,7 @@ import dev.anmitali.nfcutils.ndef.RecordInfo
 import dev.anmitali.nfcutils.nfc.TagDetails
 import dev.anmitali.nfcutils.nfc.TagPage
 import dev.anmitali.nfcutils.ui.common.labelRes
+import dev.anmitali.nfcutils.ui.common.rememberCopyAction
 import java.text.DateFormat
 import java.util.Date
 
@@ -66,6 +68,7 @@ private fun SectionTitle(@StringRes title: Int) {
 
 @Composable
 private fun InfoRow(@StringRes label: Int, value: String, fontFamily: FontFamily? = null) {
+    val copy = rememberCopyAction()
     Row(
         modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp),
@@ -76,9 +79,12 @@ private fun InfoRow(@StringRes label: Int, value: String, fontFamily: FontFamily
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.weight(0.4f),
         )
-        SelectionContainer(modifier = Modifier.weight(0.6f)) {
-            Text(text = value, style = MaterialTheme.typography.bodyMedium, fontFamily = fontFamily)
-        }
+        Text(
+            text = value,
+            style = MaterialTheme.typography.bodyMedium,
+            fontFamily = fontFamily,
+            modifier = Modifier.weight(0.6f).clickable { copy(value) },
+        )
     }
 }
 
@@ -138,6 +144,7 @@ private fun UnsupportedCard() {
 
 @Composable
 internal fun RecordCard(record: RecordInfo) {
+    val copy = rememberCopyAction()
     Card(modifier = Modifier.fillMaxWidth(), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer)) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
@@ -146,13 +153,11 @@ internal fun RecordCard(record: RecordInfo) {
                 color = MaterialTheme.colorScheme.primary,
             )
             if (record.summary.isNotEmpty()) {
-                SelectionContainer {
-                    Text(
-                        text = record.summary,
-                        style = MaterialTheme.typography.bodyLarge,
-                        modifier = Modifier.padding(top = 4.dp),
-                    )
-                }
+                Text(
+                    text = record.summary,
+                    style = MaterialTheme.typography.bodyLarge,
+                    modifier = Modifier.padding(top = 4.dp).clickable { copy(record.summary) },
+                )
             }
             if (record.detail.isNotEmpty()) {
                 Text(
@@ -167,13 +172,12 @@ internal fun RecordCard(record: RecordInfo) {
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(top = 12.dp),
             )
-            SelectionContainer {
-                Text(
-                    text = record.payloadHex.ifEmpty { stringResource(R.string.record_payload_empty) },
-                    style = MaterialTheme.typography.bodySmall,
-                    fontFamily = FontFamily.Monospace,
-                )
-            }
+            Text(
+                text = record.payloadHex.ifEmpty { stringResource(R.string.record_payload_empty) },
+                style = MaterialTheme.typography.bodySmall,
+                fontFamily = FontFamily.Monospace,
+                modifier = Modifier.clickable(enabled = record.payloadHex.isNotEmpty()) { copy(record.payloadHex) },
+            )
         }
     }
 }
