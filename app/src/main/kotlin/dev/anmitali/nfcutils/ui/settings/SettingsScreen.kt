@@ -18,13 +18,16 @@ import dev.anmitali.nfcutils.R
 import dev.anmitali.nfcutils.ui.navigation.Routes
 
 @Composable
-fun SettingsScreen(onOpen: (String) -> Unit, modifier: Modifier = Modifier) {
+fun SettingsScreen(updatesEnabled: Boolean, onOpen: (String) -> Unit, modifier: Modifier = Modifier) {
     Column(modifier = modifier.verticalScroll(rememberScrollState())) {
         SettingsItem(R.string.screen_appearance, R.string.settings_appearance_summary) { onOpen(Routes.APPEARANCE) }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             SettingsItem(R.string.settings_language, R.string.settings_language_summary) { onOpen(Routes.LANGUAGE) }
         }
         SettingsItem(R.string.settings_data_title, R.string.settings_data_summary) { onOpen(Routes.DATA) }
+        if (updatesEnabled) {
+            SettingsItem(R.string.screen_updates, R.string.settings_updates_summary) { onOpen(Routes.UPDATES) }
+        }
         SettingsItem(R.string.settings_notices, R.string.settings_notices_summary) { onOpen(Routes.NOTICES) }
         SettingsItem(R.string.settings_about, R.string.settings_about_summary) { onOpen(Routes.ABOUT) }
     }

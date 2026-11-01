@@ -24,6 +24,7 @@ import dev.anmitali.nfcutils.ui.settings.DataScreen
 import dev.anmitali.nfcutils.ui.settings.LanguageScreen
 import dev.anmitali.nfcutils.ui.settings.NoticesScreen
 import dev.anmitali.nfcutils.ui.settings.SettingsScreen
+import dev.anmitali.nfcutils.ui.settings.UpdatesScreen
 import dev.anmitali.nfcutils.ui.tools.ToolsScreen
 import dev.anmitali.nfcutils.ui.write.WriteScreen
 
@@ -60,7 +61,13 @@ fun AppNavHost(
                 onClose = { navController.popBackStack() },
             )
         }
-        composable(Routes.SETTINGS) { SettingsScreen(onOpen = { navController.navigate(it) }) }
+        composable(Routes.SETTINGS) {
+            SettingsScreen(
+                updatesEnabled = container.updateManager.enabled,
+                onOpen = { navController.navigate(it) },
+            )
+        }
+        composable(Routes.UPDATES) { UpdatesScreen(container.updateManager) }
         composable(Routes.APPEARANCE) { AppearanceScreen(container) }
         composable(Routes.DATA) { DataScreen(container, snackbarHostState) }
         composable(Routes.LANGUAGE) {

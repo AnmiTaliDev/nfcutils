@@ -64,6 +64,29 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="onboarding_support_title">Support the project</string>
     <string name="onboarding_support_body">NFC Utils is free and open source. A star on GitHub helps other people find it.</string>
     <string name="onboarding_open_repository">Open GitHub</string>
+    <string name="screen_updates">Updates</string>
+    <string name="settings_updates_summary">Check for new versions</string>
+    <string name="updates_current_version">Current version: %1$s</string>
+    <string name="updates_check">Check for updates</string>
+    <string name="updates_checking">Checking…</string>
+    <string name="updates_up_to_date">You have the latest version.</string>
+    <string name="updates_check_failed">Could not check for updates. Check the network connection.</string>
+    <string name="updates_available">Version %1$s is available.</string>
+    <string name="update_dialog_title">Update available</string>
+    <string name="update_dialog_body">Version %1$s is available. You have %2$s.</string>
+    <string name="update_action">Update</string>
+    <string name="update_later">Later</string>
+    <string name="update_permission_title">Allow installing updates</string>
+    <string name="update_permission_body">Allow NFC Utils to install apps in the system settings. The update continues when you return.</string>
+    <string name="update_open_settings">Open settings</string>
+    <string name="update_downloading_title">Downloading update</string>
+    <string name="update_installing_title">Installing update</string>
+    <string name="update_installing_body">Confirm the installation in the system dialog.</string>
+    <string name="update_failed_title">Update failed</string>
+    <string name="update_failed_network">The update could not be downloaded.</string>
+    <string name="update_failed_corrupted">The downloaded file did not match its checksum and was discarded.</string>
+    <string name="update_failed_rejected">The system did not install the update. A release signed with a different key cannot replace the installed app. Install it from the release page instead.</string>
+    <string name="update_open_release">Open release page</string>
     <string name="onboarding_repository_url" translatable="false">https://github.com/AnmiTaliDev/nfcutils</string>
 
     <string name="scan_hint_title">Ready to scan</string>

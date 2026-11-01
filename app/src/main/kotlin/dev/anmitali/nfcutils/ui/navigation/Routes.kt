@@ -17,6 +17,7 @@ object Routes {
     const val APPEARANCE = "settings/appearance"
     const val LANGUAGE = "settings/language"
     const val DATA = "settings/data"
+    const val UPDATES = "settings/updates"
     const val ABOUT = "about"
     const val NOTICES = "notices"
     const val ARG_ID = "id"
@@ -42,6 +43,7 @@ fun titleFor(route: String?): Int = when (route) {
     Routes.APPEARANCE -> R.string.screen_appearance
     Routes.LANGUAGE -> R.string.settings_language
     Routes.DATA -> R.string.settings_data_title
+    Routes.UPDATES -> R.string.screen_updates
     Routes.ABOUT -> R.string.screen_about
     Routes.NOTICES -> R.string.screen_notices
     Routes.HISTORY_DETAIL -> R.string.screen_history_detail
