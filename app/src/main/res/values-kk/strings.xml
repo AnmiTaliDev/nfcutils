@@ -221,6 +221,8 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="theme_light">Ашық</string>
     <string name="theme_dark">Қараңғы</string>
     <string name="settings_dynamic_color">Динамикалық түстер</string>
+    <string name="settings_language">Тіл</string>
+    <string name="settings_language_system">Жүйе бойынша</string>
     <string name="settings_dynamic_color_body">Тұсқағаз түстерін пайдалану. Өшірулі болса, бекітілген түс схемасы қолданылады.</string>
     <string name="settings_about">Қолданба туралы</string>
     <string name="settings_notices">Лицензиялар</string>
