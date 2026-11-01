@@ -48,6 +48,15 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="scan_open_in_editor">Редакторда ашу</string>
     <string name="section_records">NDEF жазбалары</string>
     <string name="section_pages">Беттер дампы</string>
+    <string name="section_chip_spec">Чип сипаттамасы</string>
+    <string name="chip_memory_total">Барлық жад</string>
+    <string name="chip_memory_total_value">%1$d Б (беттер: %2$d)</string>
+    <string name="chip_memory_user">Пайдаланушы жады</string>
+    <string name="chip_features">Мүмкіндіктері</string>
+    <string name="chip_feature_password">Құпиясөзбен қорғау</string>
+    <string name="chip_feature_counter">Есептегіш</string>
+    <string name="chip_feature_signature">Түпнұсқалық қолтаңбасы</string>
+    <string name="chip_feature_triple_des">3DES аутентификациясы</string>
     <string name="records_none">Тегте NDEF жазбалары жоқ.</string>
     <string name="record_payload_hex">Деректер (hex)</string>
     <string name="record_payload_empty">Бос</string>
