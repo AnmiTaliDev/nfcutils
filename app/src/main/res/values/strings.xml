@@ -220,6 +220,12 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="lock_confirm_title">Make the tag read-only?</string>
     <string name="lock_confirm_body">This is irreversible. After locking, the tag can never be written, erased or formatted again, by this app or any other.</string>
     <string name="lock_confirm_action">Make read-only</string>
+    <string name="erase_confirm_title">Erase tag?</string>
+    <string name="erase_confirm_body">The NDEF content of the next tag you tap will be deleted. This cannot be undone.</string>
+    <string name="erase_confirm_action">Erase</string>
+    <string name="format_confirm_title">Format tag?</string>
+    <string name="format_confirm_body">The next tag you tap will be formatted as NDEF. Any existing data on it may be lost.</string>
+    <string name="format_confirm_action">Format</string>
 
     <string name="history_empty">No scans yet. Scanned tags are saved here automatically.</string>
     <string name="history_no_records">No records</string>

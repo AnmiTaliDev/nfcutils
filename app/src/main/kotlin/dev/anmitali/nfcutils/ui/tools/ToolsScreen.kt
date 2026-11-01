@@ -34,47 +34,58 @@ import dev.anmitali.nfcutils.nfc.NfcAvailability
 import dev.anmitali.nfcutils.nfc.TagOperation
 import dev.anmitali.nfcutils.ui.common.TagOperationDialog
 
+private enum class ConfirmTool(
+    val operation: TagOperation,
+    @StringRes val title: Int,
+    @StringRes val body: Int,
+    @StringRes val action: Int,
+) {
+    Erase(TagOperation.Erase, R.string.erase_confirm_title, R.string.erase_confirm_body, R.string.erase_confirm_action),
+    Format(TagOperation.Format, R.string.format_confirm_title, R.string.format_confirm_body, R.string.format_confirm_action),
+    Lock(TagOperation.Lock, R.string.lock_confirm_title, R.string.lock_confirm_body, R.string.lock_confirm_action),
+}
+
 @Composable
 fun ToolsScreen(container: AppContainer, modifier: Modifier = Modifier) {
     val viewModel: ToolsViewModel = viewModel(factory = ToolsViewModel.factory(container))
     val operationStatus by viewModel.operationStatus.collectAsStateWithLifecycle()
     val availability by viewModel.availability.collectAsStateWithLifecycle()
-    var confirmLock by rememberSaveable { mutableStateOf(false) }
+    var confirming by rememberSaveable { mutableStateOf<ConfirmTool?>(null) }
     val enabled = availability == NfcAvailability.Enabled
 
     Column(
         modifier = modifier.verticalScroll(rememberScrollState()).padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        ToolCard(R.string.tool_erase_title, R.string.tool_erase_body, R.string.tool_erase_action, enabled) {
-            viewModel.start(TagOperation.Erase)
+        ToolCard(R.string.tool_erase_title, R.string.tool_erase_body, R.string.tool_erase_action, enabled, destructive = true) {
+            confirming = ConfirmTool.Erase
         }
         ToolCard(R.string.tool_format_title, R.string.tool_format_body, R.string.tool_format_action, enabled) {
-            viewModel.start(TagOperation.Format)
+            confirming = ConfirmTool.Format
         }
         ToolCard(R.string.tool_lock_title, R.string.tool_lock_body, R.string.tool_lock_action, enabled, destructive = true) {
-            confirmLock = true
+            confirming = ConfirmTool.Lock
         }
     }
 
     TagOperationDialog(operationStatus, onRetry = viewModel::start, onClose = viewModel::closeOperation)
 
-    if (confirmLock) {
+    confirming?.let { tool ->
         AlertDialog(
-            onDismissRequest = { confirmLock = false },
-            title = { Text(stringResource(R.string.lock_confirm_title)) },
-            text = { Text(stringResource(R.string.lock_confirm_body)) },
+            onDismissRequest = { confirming = null },
+            title = { Text(stringResource(tool.title)) },
+            text = { Text(stringResource(tool.body)) },
             confirmButton = {
                 TextButton(
                     onClick = {
-                        confirmLock = false
-                        viewModel.start(TagOperation.Lock)
+                        confirming = null
+                        viewModel.start(tool.operation)
                     },
                 ) {
-                    Text(stringResource(R.string.lock_confirm_action))
+                    Text(stringResource(tool.action))
                 }
             },
-            dismissButton = { TextButton(onClick = { confirmLock = false }) { Text(stringResource(R.string.action_cancel)) } },
+            dismissButton = { TextButton(onClick = { confirming = null }) { Text(stringResource(R.string.action_cancel)) } },
         )
     }
 }
