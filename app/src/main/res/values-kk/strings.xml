@@ -25,6 +25,7 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     <string name="action_write">Жазу</string>
     <string name="action_write_to_tag">Тегке жазу</string>
     <string name="action_share">Бөлісу</string>
+    <string name="copied_to_clipboard">Көшірілді</string>
     <string name="share_chooser_title">Сканерлеу нәтижесімен бөлісу</string>
     <string name="share_as_title">Бөлісу түрі</string>
     <string name="share_as_text">Мәтін</string>
