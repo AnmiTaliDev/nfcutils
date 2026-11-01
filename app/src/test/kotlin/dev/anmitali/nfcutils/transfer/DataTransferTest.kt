@@ -192,4 +192,35 @@ class DataTransferTest {
     fun invalidFileIsRejected() {
         assertNull(parseExport("hello"))
     }
+
+    @Test
+    fun pinnedFlagRoundTrips() {
+        val pinned = TagDetails(
+            scannedAt = 9L,
+            uid = "02",
+            tagType = TagType.Ntag213,
+            technologies = emptyList(),
+            atqa = null,
+            sak = null,
+            maxSize = null,
+            usedSize = null,
+            writable = null,
+            canMakeReadOnly = null,
+            formatable = false,
+            unsupported = false,
+            records = emptyList(),
+            pages = emptyList(),
+            pinned = true,
+        )
+        val parsed = parseExport(buildExport(emptyList(), listOf(pinned, minimalScan)))!!
+        assertTrue(parsed.scans[0].pinned)
+        assertFalse(parsed.scans[1].pinned)
+    }
+
+    @Test
+    fun exportWithoutPinnedKeyImportsAsNotPinned() {
+        val text = buildExport(emptyList(), listOf(fullScan))
+        assertFalse(text.contains("pinned"))
+        assertFalse(parseExport(text)!!.scans[0].pinned)
+    }
 }

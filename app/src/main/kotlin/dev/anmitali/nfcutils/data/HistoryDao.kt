@@ -67,6 +67,7 @@ abstract class HistoryDao {
                 summary = entrySummary(details.records),
                 nfcCounter = details.nfcCounter,
                 signature = details.signature,
+                pinned = details.pinned,
             ),
         )
         insertTechnologies(details.technologies.map { HistoryTechnologyEntity(0, entryId, it) })

@@ -24,4 +24,5 @@ fun HistoryDetail.toTagDetails(): TagDetails = TagDetails(
     pages = pages.sortedBy { it.pageIndex }.map { TagPage(it.pageIndex, it.hex) },
     nfcCounter = entry.nfcCounter,
     signature = entry.signature,
+    pinned = entry.pinned,
 )

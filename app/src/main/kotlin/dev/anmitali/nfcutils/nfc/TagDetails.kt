@@ -24,4 +24,5 @@ class TagDetails(
     val pages: List<TagPage>,
     val nfcCounter: Int? = null,
     val signature: String? = null,
+    val pinned: Boolean = false,
 )

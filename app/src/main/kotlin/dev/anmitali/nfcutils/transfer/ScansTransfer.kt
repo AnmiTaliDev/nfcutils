@@ -29,6 +29,7 @@ fun scansToBlocks(scans: List<TagDetails>): List<Block> = scans.map { scan ->
     entries.add("unsupported" to scan.unsupported.toString())
     scan.nfcCounter?.let { entries.add("nfcCounter" to it.toString()) }
     scan.signature?.let { entries.add("signature" to it) }
+    if (scan.pinned) entries.add("pinned" to "true")
     scan.technologies.forEach { entries.add("tech" to it) }
     scan.records.forEach { record ->
         val parts = listOf(record.kind.name, record.summary, record.detail, record.payloadHex)
@@ -71,5 +72,6 @@ fun blocksToScans(blocks: List<Block>): List<TagDetails> = blocks.filter { it.ty
         pages = block.all("page").mapNotNull { parsePage(it) },
         nfcCounter = block.first("nfcCounter")?.toIntOrNull(),
         signature = block.first("signature"),
+        pinned = block.first("pinned")?.toBooleanStrictOrNull() ?: false,
     )
 }
