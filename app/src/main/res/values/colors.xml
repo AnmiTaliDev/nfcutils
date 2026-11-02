@@ -4,5 +4,5 @@ SPDX-License-Identifier: GPL-3.0-only
 SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
 -->
 <resources>
-    <color name="ic_launcher_background">#EADDFF</color>
+    <color name="ic_launcher_background">@android:color/system_accent1_100</color>
 </resources>

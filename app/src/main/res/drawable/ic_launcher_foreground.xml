@@ -9,24 +9,24 @@ SPDX-FileCopyrightText: 2026 AnmiTalidev <anmitalidev@nuros.org>
     android:viewportWidth="108"
     android:viewportHeight="108">
     <path
-        android:fillColor="#381E72"
+        android:fillColor="@android:color/system_accent1_800"
         android:pathData="M35,54m-6,0a6,6 0,1 1,12 0a6,6 0,1 1,-12 0" />
     <path
         android:fillColor="#00000000"
         android:pathData="M47.26,43.71A16,16 0,0 1,47.26,64.29"
-        android:strokeColor="#381E72"
+        android:strokeColor="@android:color/system_accent1_800"
         android:strokeLineCap="round"
         android:strokeWidth="6" />
     <path
         android:fillColor="#00000000"
         android:pathData="M57.21,35.36A29,29 0,0 1,57.21,72.64"
-        android:strokeColor="#6750A4"
+        android:strokeColor="@android:color/system_accent1_600"
         android:strokeLineCap="round"
         android:strokeWidth="6" />
     <path
         android:fillColor="#00000000"
         android:pathData="M67.17,27A42,42 0,0 1,67.17,81"
-        android:strokeColor="#6750A4"
+        android:strokeColor="@android:color/system_accent1_600"
         android:strokeLineCap="round"
         android:strokeWidth="6" />
 </vector>
